@@ -65,6 +65,7 @@ export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const centerRef = useRef<HTMLDivElement>(null);
+  const pillsRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
 
@@ -90,7 +91,7 @@ export default function HeroSection() {
       });
 
       // Feature pills stagger in from left
-      gsap.from('.hero-pill', {
+      gsap.from(pillsRef.current ? pillsRef.current.children : [], {
         opacity: 0,
         x: -30,
         duration: 0.5,
@@ -213,7 +214,7 @@ export default function HeroSection() {
             <div className={styles.circleGrad} aria-hidden="true" />
 
             {/* Feature Pills — left side */}
-            <div className={styles.pills}>
+            <div ref={pillsRef} className={styles.pills}>
               {/* Pay Per Print */}
               <div className={styles.pill}>
                 <span className={styles.pillIcon}>
@@ -269,7 +270,7 @@ export default function HeroSection() {
               height={600}
               priority
               className={styles.heroImg}
-              style={{ width: '100%', height: 'auto' }}
+              style={{ width: '150%', height: 'auto', maxWidth: 'none' }}
             />
           </div>
 

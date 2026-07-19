@@ -20,7 +20,7 @@
 /* ── 3-Column Grid ────────────────────────────────── */
 .grid {
   display: grid;
-  grid-template-columns: 1.1fr 1.3fr 380px;
+  grid-template-columns: 1.5fr 1fr 380px;
   gap: 56px;
   align-items: center;
   min-height: 600px;
@@ -68,7 +68,7 @@
   font-size: 1rem;
   color: var(--color-text-body);
   line-height: 1.75;
-  max-width: 480px;
+  max-width: 560px;
 }
 
 /* CTA Buttons */
@@ -200,13 +200,14 @@
   align-items: center;
   justify-content: center;
   min-height: 480px;
+  margin-left: 56px;
 }
 
 /* Blue radial gradient circle behind image */
 .circleGrad {
   position: absolute;
-  width: 420px;
-  height: 420px;
+  width: 580px;
+  height: 580px;
   border-radius: 50%;
   background: radial-gradient(circle, #DBEAFE 0%, #EFF6FF 55%, transparent 80%);
   top: 50%;
@@ -219,8 +220,8 @@
 /* Feature Pills — stacked on the left side of image */
 .pills {
   position: absolute;
-  left: -8px;
-  top: 50%;
+  left: -142px;
+  top: 40%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
