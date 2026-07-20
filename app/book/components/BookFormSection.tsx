@@ -35,7 +35,7 @@ export default function BookFormSection() {
 
       if (response.ok) {
         setSubmitStatus('success');
-        e.currentTarget.reset();
+        (e.target as HTMLFormElement).reset();
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
         setSubmitStatus('error');
@@ -101,7 +101,7 @@ export default function BookFormSection() {
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Phone Number <span className={styles.required}>*</span></label>
-                  <input type="tel" name="phone" className={styles.input} placeholder="Enter phone number" required />
+                  <input type="tel" name="phone" className={styles.input} placeholder="Enter phone number" minLength={10} pattern="[0-9]{10,}" title="Please enter at least 10 digits" onInput={(e) => { e.currentTarget.value = e.currentTarget.value.replace(/\D/g, '') }} required />
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Email Address</label>
@@ -223,7 +223,7 @@ export default function BookFormSection() {
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Phone Number <span className={styles.required}>*</span></label>
-                  <input type="tel" name="phone" className={styles.input} placeholder="Enter phone number" required />
+                  <input type="tel" name="phone" className={styles.input} placeholder="Enter phone number" minLength={10} pattern="[0-9]{10,}" title="Please enter at least 10 digits" onInput={(e) => { e.currentTarget.value = e.currentTarget.value.replace(/\D/g, '') }} required />
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Email Address</label>
@@ -313,7 +313,7 @@ export default function BookFormSection() {
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Phone Number <span className={styles.required}>*</span></label>
-                  <input type="tel" name="phone" className={styles.input} placeholder="Enter phone number" required />
+                  <input type="tel" name="phone" className={styles.input} placeholder="Enter phone number" minLength={10} pattern="[0-9]{10,}" title="Please enter at least 10 digits" onInput={(e) => { e.currentTarget.value = e.currentTarget.value.replace(/\D/g, '') }} required />
                 </div>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Email Address <span className={styles.required}>*</span></label>

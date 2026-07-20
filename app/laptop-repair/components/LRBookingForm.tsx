@@ -23,7 +23,7 @@ export default function LRBookingForm() {
 
       if (response.ok) {
         setSubmitStatus('success');
-        e.currentTarget.reset();
+        (e.target as HTMLFormElement).reset();
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
         setSubmitStatus('error');
@@ -66,7 +66,7 @@ export default function LRBookingForm() {
 
             <div className={styles.inputGroup}>
               <label>Phone Number <span className={styles.required}>*</span></label>
-              <input type="tel" name="phone" placeholder="Enter your phone number" required />
+              <input type="tel" name="phone" placeholder="Enter your phone number" minLength={10} pattern="[0-9]{10,}" title="Please enter at least 10 digits" onInput={(e) => { e.currentTarget.value = e.currentTarget.value.replace(/\D/g, '') }} required />
             </div>
 
             <div className={styles.inputGroup}>

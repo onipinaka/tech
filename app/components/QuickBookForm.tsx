@@ -33,7 +33,7 @@ export default function QuickBookForm() {
 
       if (response.ok) {
         setSubmitStatus('success');
-        e.currentTarget.reset();
+        (e.target as HTMLFormElement).reset();
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
         setSubmitStatus('error');
@@ -131,7 +131,13 @@ export default function QuickBookForm() {
               type="tel"
               placeholder="Phone Number"
               value={form.phone}
-              onChange={handleChange}
+              onChange={(e) => {
+                e.target.value = e.target.value.replace(/\D/g, '');
+                handleChange(e);
+              }}
+              minLength={10}
+              pattern="[0-9]{10,}"
+              title="Please enter at least 10 digits"
               required
               className={styles.input}
               autoComplete="tel"
