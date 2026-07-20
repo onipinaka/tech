@@ -12,18 +12,7 @@ const NAV_LINKS = [
   { label: 'Home', href: '/', active: true },
   { label: 'Printer Rental', href: '/printer-rental' },
   { label: 'Laptop Repair', href: '/laptop-repair' },
-  { label: 'Laptop Parts', href: '/laptop-parts' },
-  {
-    label: 'Services',
-    href: '/services',
-    hasDropdown: true,
-    dropdown: [
-      { label: 'IT Support', href: '/services/it-support' },
-      { label: 'Network Setup', href: '/services/network' },
-      { label: 'Maintenance', href: '/services/maintenance' },
-    ],
-  },
-  { label: 'About Us', href: '/about' },
+  { label: 'About Us', href: '/about-us' },
   { label: 'Contact', href: '/contact' },
 ];
 

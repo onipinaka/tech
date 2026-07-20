@@ -1,0 +1,232 @@
+.heroSection {
+  width: 100%;
+  padding: 80px 0 120px;
+  background-color: #FFFFFF;
+  font-family: var(--font-body, system-ui, sans-serif);
+  overflow: hidden;
+}
+
+.container {
+  width: 96%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 64px;
+}
+
+.leftCol {
+  flex: 1;
+  max-width: 650px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.textBlue {
+  color: #2563EB;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.featuresList {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 48px;
+  flex-wrap: nowrap;
+}
+
+.featureItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.iconWrapBlue {
+  color: #2563EB;
+  margin-bottom: 12px;
+}
+
+.featureTitle {
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.featureDesc {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #64748B;
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.primaryBtn, .secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.primaryBtn {
+  background-color: #2563EB;
+  color: #FFFFFF;
+  border: 2px solid #2563EB;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
+}
+
+.primaryBtn:hover {
+  background-color: #1D4ED8;
+  border-color: #1D4ED8;
+  transform: translateY(-2px);
+}
+
+.secondaryBtn {
+  background-color: #FFFFFF;
+  color: #2563EB;
+  border: 2px solid #E2E8F0;
+}
+
+.secondaryBtn:hover {
+  border-color: #3B82F6;
+  background-color: #F8FAFC;
+  transform: translateY(-2px);
+}
+
+/* ── Right Column: Image & Blurred Circle ── */
+.rightCol {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 
+  Creating the custom blurred blue circle as requested 
+*/
+.imageBg {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageBg::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  background-color: rgba(219, 234, 254, 0.8); /* Light blue #DBEAFE */
+  border-radius: 50%;
+  filter: blur(40px); /* Custom blur effect */
+  z-index: 0;
+}
+
+.laptopImg {
+  width: 110%; /* Slightly larger than container for dynamic look */
+  max-width: 700px;
+  height: auto;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 24px;
+}
+
+.warrantyBadge {
+  position: relative;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 30px;
+  padding: 12px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.03);
+  z-index: 2;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.warrantyIcon {
+  color: #2563EB;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 80px;
+  }
+  .leftCol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .featureItem {
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .featuresList {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .featureItem {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .primaryBtn, .secondaryBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  .laptopImg {
+    width: 100%;
+  }
+  .imageBg::before {
+    filter: blur(30px);
+  }
+}

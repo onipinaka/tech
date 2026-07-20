@@ -1,0 +1,39 @@
+.heroWrapper {
+  width: 100%;
+  position: relative;
+  background-color: #FFFFFF;
+  font-family: var(--font-body, system-ui, sans-serif);
+  padding: 60px 0 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 96%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.content {
+  max-width: 800px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 16px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.textBlue {
+  color: #2563EB;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #64748B;
+  line-height: 1.6;
+}

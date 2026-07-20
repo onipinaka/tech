@@ -378,8 +378,8 @@
   }
 
   .center {
-    order: -1;
-    min-height: 280px;
+    margin-left: 0;
+    min-height: 320px;
   }
 
   .circleGrad {
@@ -389,11 +389,12 @@
 
   .pills {
     left: 0;
-    top: auto;
-    bottom: -20px;
-    transform: none;
-    flex-direction: row;
-    flex-wrap: wrap;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%) scale(0.65);
+    transform-origin: left center;
+    flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: center;
     gap: 8px;
   }
@@ -403,15 +404,20 @@
   }
 
   .right {
-    justify-content: center;
+    display: none; /* Hide form on tablet and mobile */
   }
 
   .statsInner {
-    gap: var(--space-md);
+    gap: 8px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
   }
 
   .statItem {
-    min-width: 120px;
+    min-width: unset;
+    flex-direction: column;
+    text-align: center;
+    gap: 4px;
   }
 }
 
@@ -432,29 +438,145 @@
     justify-content: center;
   }
 
+  .socialProof {
+    gap: 12px;
+  }
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 0.6rem;
+  }
+
+  .clientCount {
+    font-size: 0.75rem;
+  }
+
+  .ratingText {
+    font-size: 0.7rem;
+  }
+
+  .stars svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .center {
+    margin-top: 40px;
+  }
+
   .pills {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    display: block;
+  }
+
+  .pill {
+    position: absolute;
+    min-width: unset;
+    padding: 6px 10px 6px 6px;
+    gap: 6px;
+    border-radius: 8px;
+  }
+  
+  .pillIcon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+  }
+  
+  .pillIcon svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .pillTitle {
+    font-size: 0.55rem;
+  }
+  
+  .pillSub {
+    font-size: 0.45rem;
+  }
+
+  .pill:nth-child(1) {
+    top: 5%;
+    left: 2%;
+  }
+
+  .pill:nth-child(2) {
+    bottom: 20%;
+    left: 2%;
+  }
+
+  .pill:nth-child(3) {
+    bottom: 5%;
+    right: 2%;
   }
 
   .statsStrip {
     padding: var(--space-md);
-  }
-
-  .statValue {
-    font-size: 1.2rem;
+    background: transparent;
+    border-top: none;
   }
 
   .statsInner {
-    gap: var(--space-sm);
-    justify-content: flex-start;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.06);
+    padding: 16px 4px;
   }
 
   .statItem {
-    min-width: calc(50% - 8px);
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+    padding: 0 4px;
+  }
+
+  .statIcon > svg {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 2px;
+  }
+
+  /* Make the SVG background circular to match the design */
+  .statIcon > svg > rect:first-child {
+    rx: 16px;
+  }
+
+  .statValue {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+  }
+
+  .statLabel {
+    font-size: 0.55rem;
+    line-height: 1.2;
+    color: var(--color-text-body);
   }
 
   .statDivider {
-    display: none;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: var(--color-border);
   }
 }

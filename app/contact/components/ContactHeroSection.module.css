@@ -1,0 +1,137 @@
+.heroSection {
+  width: 100%;
+  padding: 60px 0 100px;
+  background: radial-gradient(circle at top right, rgba(219, 234, 254, 0.4) 0%, rgba(248, 250, 252, 0) 50%);
+  background-color: #F8FAFC;
+  font-family: var(--font-body, system-ui, sans-serif);
+}
+
+.container {
+  width: 96%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.contentCol {
+  flex: 1;
+  max-width: 750px;
+}
+
+.breadcrumb {
+  font-size: 0.9rem;
+  color: #64748B;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.breadcrumbActive {
+  color: #2563EB;
+  font-weight: 600;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.textBlue {
+  color: #2563EB;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+.featuresList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.featureBadge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #FFFFFF;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.02);
+  flex: 1 1 calc(33.333% - 24px);
+  min-width: 200px;
+}
+
+.iconWrapBlue {
+  width: 44px;
+  height: 44px;
+  background-color: #EFF6FF;
+  color: #2563EB;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.badgeTextWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.featureTitle {
+  margin: 0 0 4px 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.featureDesc {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #64748B;
+  line-height: 1.4;
+}
+
+.mobileBreak {
+  display: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 40px 0 60px;
+  }
+  .container {
+    justify-content: center;
+  }
+  .contentCol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .featuresList {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .featureBadge {
+    width: 100%;
+    max-width: 350px;
+    flex: 1 1 100%;
+  }
+  .mobileBreak {
+    display: block;
+  }
+}

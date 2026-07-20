@@ -13,6 +13,40 @@ const SERVICES = [
 ];
 
 export default function QuickBookForm() {
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleAjaxSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitStatus('submitting');
+    setErrorMessage('');
+    
+    try {
+      const formData = new FormData(e.currentTarget);
+      const response = await fetch('https://formsubmit.co/ajax/viveksharma9451@gmail.com', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+      
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        e.currentTarget.reset();
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      } else {
+        setSubmitStatus('error');
+        setErrorMessage(data.message || 'Something went wrong. Please try again.');
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setErrorMessage('Network error. Please check your connection.');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    }
+  };
+
   const [form, setForm] = useState({
     name: '',
     company: '',
@@ -24,11 +58,6 @@ export default function QuickBookForm() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Submission logic would go here
-    alert('Request submitted! We will call you back within 15 minutes.');
-  };
 
   return (
     <div className={styles.card}>
@@ -44,7 +73,7 @@ export default function QuickBookForm() {
         </span>
       </div>
 
-      <form onSubmit={handleSubmit} className={styles.form} noValidate>
+      <form onSubmit={handleAjaxSubmit} className={styles.form}>
         {/* Your Name */}
         <div className={styles.field}>
           <label htmlFor="qb-name" className="sr-only">Your Name</label>
@@ -140,13 +169,24 @@ export default function QuickBookForm() {
           </div>
         </div>
 
-        {/* Submit */}
+        {/* Submit Messages */}
+        {submitStatus === 'error' && (
+          <div style={{ color: '#ef4444', fontSize: '13px', textAlign: 'center', marginBottom: '8px' }}>
+            {errorMessage}
+          </div>
+        )}
+        {submitStatus === 'success' && (
+          <div style={{ color: '#15803d', backgroundColor: '#dcfce3', padding: '10px', borderRadius: '6px', fontSize: '13px', textAlign: 'center', marginBottom: '12px', border: '1px solid #bbf7d0' }}>
+            ✅ <strong>Success!</strong> We will call you back shortly.
+          </div>
+        )}
         <button
           type="submit"
           className={styles.submitBtn}
           id="quickbook-submit-btn"
+          disabled={submitStatus === 'submitting' || submitStatus === 'success'}
         >
-          Submit Request
+          {submitStatus === 'submitting' ? 'Submitting...' : submitStatus === 'success' ? '✅ Success!' : submitStatus === 'error' ? '❌ Error' : 'Submit Request'}
         </button>
       </form>
 

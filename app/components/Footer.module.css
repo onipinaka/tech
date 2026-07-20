@@ -1,0 +1,290 @@
+.footer {
+  width: 100%;
+  background-color: #031B4E;
+  color: #FFFFFF;
+  font-family: var(--font-body, system-ui, sans-serif);
+  padding: 80px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Optional subtle curved wave effect at the bottom could be added as a pseudo-element if needed,
+   but we'll stick to the dark blue background structure based on the screenshot */
+.footer::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: radial-gradient(ellipse at bottom right, rgba(37, 99, 235, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.topSection {
+  width: 100%;
+  margin: 0;
+  padding: 0 4% 60px;
+  display: flex;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Left Column: Brand ── */
+.brandCol {
+  flex: 0 0 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.logoTextWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.logoTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1;
+}
+
+.logoTagline {
+  font-size: 0.8rem;
+  color: #3B82F6;
+  margin: 4px 0 0 0;
+}
+
+.brandDesc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #CBD5E1;
+  margin-bottom: 32px;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 12px;
+}
+
+.socialIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  transition: all 0.2s ease;
+}
+
+.socialIcon:hover {
+  background-color: #2563EB;
+  transform: translateY(-2px);
+}
+
+.divider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 16px;
+}
+
+/* ── Middle Columns: Links ── */
+.linksGrid {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  gap: 100px;
+}
+
+.linkGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.groupTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #3B82F6;
+  margin: 0 0 24px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.linkList li a {
+  color: #F1F5F9;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: color 0.2s ease;
+}
+
+.linkList li a svg {
+  color: #3B82F6;
+}
+
+.linkList li a:hover {
+  color: #60A5FA;
+}
+
+/* ── Right Column: Contact ── */
+.contactCol {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.contactIconWrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: rgba(37, 99, 235, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #60A5FA;
+  flex-shrink: 0;
+}
+
+.contactTitle {
+  font-size: 0.95rem;
+  color: #3B82F6;
+  margin: 0 0 4px 0;
+  font-weight: 600;
+}
+
+.contactText {
+  font-size: 0.9rem;
+  color: #F1F5F9;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Bottom Bar ── */
+.bottomBar {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  margin: 0;
+  padding: 24px 4%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: #CBD5E1;
+}
+
+.legalLinks {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.legalLinks a {
+  color: #CBD5E1;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.legalLinks a:hover {
+  color: #FFFFFF;
+}
+
+.separator {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.8rem;
+}
+
+.trustedService {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #F1F5F9;
+}
+
+.shieldIcon {
+  color: #3B82F6;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+  .topSection {
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  .divider {
+    display: none;
+  }
+  .brandCol, .contactCol {
+    flex: 1 1 300px;
+  }
+  .linksGrid {
+    flex: 1 1 100%;
+    order: 3;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .bottomBar {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .linksGrid {
+    flex-direction: column;
+    gap: 48px;
+  }
+  .legalLinks {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
