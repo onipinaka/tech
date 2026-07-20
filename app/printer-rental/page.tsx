@@ -7,7 +7,7 @@ import PRIndustries from './components/PRIndustries';
 import PRCTA from './components/PRCTA';
 
 export const metadata = {
-  title: 'Printer Rental Solutions | PrintTech',
+  title: 'Printer Rental Solutions | Raion Technologies',
   description: 'High-performance printers, zero upfront cost. Flexible plans with service, supplies & support included.',
 };
 

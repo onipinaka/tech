@@ -9,7 +9,7 @@ export default function AboutCTASection() {
         <div className={styles.ctaBox}>
           <div className={styles.textWrap}>
             <h2 className={styles.title}>Let's Keep Your Technology Running</h2>
-            <p className={styles.subtitle}>Book a service today and experience the PrintTech difference.</p>
+            <p className={styles.subtitle}>Book a service today and experience the Raion Technologies difference.</p>
           </div>
           <Link href="/book?service=other&notes=I%20would%20like%20to%20book%20a%20service." style={{ textDecoration: 'none' }}>
             <button className={styles.primaryBtn}>

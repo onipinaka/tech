@@ -5,8 +5,8 @@ import ContactContentSection from './components/ContactContentSection';
 import ContactServiceArea from './components/ContactServiceArea';
 
 export const metadata = {
-  title: 'Contact Us | PrintTech',
-  description: 'Have a question or want to book a service? Reach out to PrintTech today.',
+  title: 'Contact Us | Raion Technologies',
+  description: 'Have a question or want to book a service? Reach out to Raion Technologies today.',
 };
 
 export default function ContactPage() {

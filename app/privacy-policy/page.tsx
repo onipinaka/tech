@@ -3,8 +3,8 @@ import Footer from '../components/Footer';
 import styles from '../components/LegalPage.module.css';
 
 export const metadata = {
-  title: 'Privacy Policy | PrintTech',
-  description: 'Privacy Policy for PrintTech services.',
+  title: 'Privacy Policy | Raion Technologies',
+  description: 'Privacy Policy for Raion Technologies services.',
 };
 
 export default function PrivacyPolicy() {
@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
             
             <h2>1. Introduction</h2>
             <p>
-              Welcome to PrintTech. We respect your privacy and are committed to protecting your personal data. 
+              Welcome to Raion Technologies. We respect your privacy and are committed to protecting your personal data. 
               This privacy policy will inform you as to how we look after your personal data when you visit our website 
               (regardless of where you visit it from) and tell you about your privacy rights and how the law protects you.
             </p>
@@ -51,7 +51,7 @@ export default function PrivacyPolicy() {
 
             <h2>5. Contact Us</h2>
             <p>
-              If you have any questions about this privacy policy or our privacy practices, please contact us at support@printtech.com.
+              If you have any questions about this privacy policy or our privacy practices, please contact us at support@raiontechnologies.com.
             </p>
           </div>
         </div>

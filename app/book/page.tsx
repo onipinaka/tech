@@ -6,8 +6,8 @@ import BookFormSection from './components/BookFormSection';
 import BookFeaturesSection from './components/BookFeaturesSection';
 
 export const metadata = {
-  title: 'Book a Service | PrintTech',
-  description: 'Book printer or laptop repair services with PrintTech. Quick response and trusted experts.',
+  title: 'Book a Service | Raion Technologies',
+  description: 'Book printer or laptop repair services with Raion Technologies. Quick response and trusted experts.',
 };
 
 export default function BookPage() {

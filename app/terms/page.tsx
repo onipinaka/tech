@@ -3,8 +3,8 @@ import Footer from '../components/Footer';
 import styles from '../components/LegalPage.module.css';
 
 export const metadata = {
-  title: 'Terms & Conditions | PrintTech',
-  description: 'Terms and Conditions for PrintTech services.',
+  title: 'Terms & Conditions | Raion Technologies',
+  description: 'Terms and Conditions for Raion Technologies services.',
 };
 
 export default function TermsAndConditions() {
@@ -24,7 +24,7 @@ export default function TermsAndConditions() {
 
             <h2>2. Use License</h2>
             <p>
-              Permission is granted to temporarily download one copy of the materials on PrintTech's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title.
+              Permission is granted to temporarily download one copy of the materials on Raion Technologies's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title.
             </p>
 
             <h2>3. Service Provision</h2>
@@ -34,7 +34,7 @@ export default function TermsAndConditions() {
 
             <h2>4. Rental Agreements</h2>
             <p>
-              When renting equipment from PrintTech, you agree to:
+              When renting equipment from Raion Technologies, you agree to:
             </p>
             <ul>
               <li>Take reasonable care of the rented equipment.</li>
@@ -45,12 +45,12 @@ export default function TermsAndConditions() {
 
             <h2>5. Limitations</h2>
             <p>
-              In no event shall PrintTech or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on PrintTech's website or services.
+              In no event shall Raion Technologies or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Raion Technologies's website or services.
             </p>
 
             <h2>6. Revisions and Errata</h2>
             <p>
-              The materials appearing on PrintTech's website could include technical, typographical, or photographic errors. PrintTech does not warrant that any of the materials on its website are accurate, complete, or current.
+              The materials appearing on Raion Technologies's website could include technical, typographical, or photographic errors. Raion Technologies does not warrant that any of the materials on its website are accurate, complete, or current.
             </p>
           </div>
         </div>

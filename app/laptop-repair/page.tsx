@@ -5,7 +5,7 @@ import LRServicesSection from './components/LRServicesSection';
 import LRBookingForm from './components/LRBookingForm';
 
 export const metadata = {
-  title: 'Laptop Repair Services | PrintTech',
+  title: 'Laptop Repair Services | Raion Technologies',
   description: 'Fast, reliable and affordable laptop repair services at home or office. Our experts fix it right the first time.',
 };
 

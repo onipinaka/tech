@@ -9,9 +9,9 @@ export default function Footer() {
         {/* Column 1: Brand & Info */}
         <div className={styles.brandCol}>
           <div className={styles.logoWrap}>
-            <img src="/logo.png" alt="PrintTech Logo" className={styles.logo} />
+            <img src="/brandlogo.png" alt="Raion Technologies Logo" className={styles.logo} />
             <div className={styles.logoTextWrap}>
-              <h2 className={styles.logoTitle}>PrintTech</h2>
+              <h2 className={styles.logoTitle}>Raion Technologies</h2>
               <p className={styles.logoTagline}>Print. Support. Simplified.</p>
             </div>
           </div>
@@ -70,7 +70,7 @@ export default function Footer() {
           <div className={styles.linkGroup}>
             <h3 className={styles.groupTitle}>COMPANY</h3>
             <ul className={styles.linkList}>
-              <li><a href="#">About PrintTech</a></li>
+              <li><a href="#">About Raion Technologies</a></li>
               <li><a href="#">Why Choose Us</a></li>
               <li><a href="#">Our Process</a></li>
               <li><a href="#">Testimonials</a></li>
@@ -118,7 +118,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className={styles.bottomBar}>
         <div className={styles.copyright}>
-          © 2026 PrintTech. All Rights Reserved.
+          © 2026 Raion Technologies. All Rights Reserved.
         </div>
         
         <div className={styles.legalLinks}>

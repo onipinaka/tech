@@ -140,13 +140,13 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       className={styles.hero}
-      aria-label="Hero section — Professional Printer Rental & IT Support"
+      aria-label="Hero section - Professional Printer Rental & IT Support"
     >
       {/* ── Main Hero Grid ── */}
       <div className={styles.container}>
         <div className={styles.grid}>
 
-          {/* LEFT — Copy */}
+          {/* LEFT - Copy */}
           <div ref={leftRef} className={styles.left}>
             <div className={styles.trustBadge}>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -166,7 +166,7 @@ export default function HeroSection() {
 
             <p className={styles.subheading}>
               Smart printing solutions, expert IT support and reliable
-              service—delivered to your home or office.
+              service-delivered to your home or office.
             </p>
 
             <div className={styles.ctaGroup}>
@@ -207,13 +207,13 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* CENTER — Hero Image */}
+          {/* CENTER - Hero Image */}
           <div ref={centerRef} className={styles.center}>
 
             {/* Blue radial gradient behind image */}
             <div className={styles.circleGrad} aria-hidden="true" />
 
-            {/* Feature Pills — left side */}
+            {/* Feature Pills - left side */}
             <div ref={pillsRef} className={styles.pills}>
               {/* Pay Per Print */}
               <div className={styles.pill}>
@@ -262,10 +262,10 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* Hero Image — floats above gradient */}
+            {/* Hero Image - floats above gradient */}
             <Image
               src="/f.png"
-              alt="Professional printer rental and IT support — PrintTech"
+              alt="Professional printer rental and IT support - Raion Technologies"
               width={700}
               height={600}
               priority
@@ -274,7 +274,7 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* RIGHT — Quick Book Form */}
+          {/* RIGHT - Quick Book Form */}
           <div ref={rightRef} className={styles.right}>
             <QuickBookForm />
           </div>
@@ -302,7 +302,7 @@ export default function HeroSection() {
 
 /* ────────────────────────────────────────────────────────────
    Inline SVG Illustration (Printer + Laptop + Tech Rep)
-   Built with pure SVG — no external image dependency
+   Built with pure SVG - no external image dependency
    ──────────────────────────────────────────────────────────── */
 function HeroIllustration() {
   return (

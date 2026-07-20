@@ -18,7 +18,7 @@ export default function AboutStorySection() {
           
           <div className={styles.content}>
             <p>
-              PrintTech started with a simple goal &ndash; to provide honest, high-quality and affordable tech support to everyone. What began as a small local service has now grown into a trusted partner for homes, students and businesses.
+              Raion Technologies started with a simple goal &ndash; to provide honest, high-quality and affordable tech support to everyone. What began as a small local service has now grown into a trusted partner for homes, students and businesses.
             </p>
             <p>
               Today, we help thousands of customers keep their laptops and printers running smoothly, with fast service, genuine parts and a team that truly cares.

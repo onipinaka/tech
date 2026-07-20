@@ -49,7 +49,7 @@ export default function AboutWhyChooseSection() {
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <div className={styles.badge}>Why Choose PrintTech</div>
+          <div className={styles.badge}>Why Choose Raion Technologies</div>
           <h2 className={styles.title}>More Than Just a Service</h2>
           <p className={styles.subtitle}>We focus on what matters most &mdash; your convenience, trust and peace of mind.</p>
         </div>

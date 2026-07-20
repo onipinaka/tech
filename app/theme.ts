@@ -1,5 +1,5 @@
 /**
- * PrintTech — Centralized Design Tokens
+ * Raion Technologies — Centralized Design Tokens
  * Single source of truth for all colors, typography, spacing, and motion.
  * Import from here — never hard-code values in components.
  */

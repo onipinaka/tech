@@ -8,8 +8,8 @@ import AboutValuesSection from './components/AboutValuesSection';
 import AboutCTASection from './components/AboutCTASection';
 
 export const metadata = {
-  title: 'About Us | PrintTech',
-  description: 'Learn more about PrintTech and our commitment to reliable printer and laptop services.',
+  title: 'About Us | Raion Technologies',
+  description: 'Learn more about Raion Technologies and our commitment to reliable printer and laptop services.',
 };
 
 export default function AboutUsPage() {

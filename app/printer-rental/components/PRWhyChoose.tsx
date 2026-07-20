@@ -54,7 +54,7 @@ export default function PRWhyChoose() {
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <div className={styles.badge}>WHY CHOOSE PRINTTECH?</div>
+          <div className={styles.badge}>WHY CHOOSE Raion Technologies?</div>
           <h2 className={styles.title}>Everything You Need, Included</h2>
           <p className={styles.subtitle}>We make printing simple, affordable and worry-free.</p>
         </div>

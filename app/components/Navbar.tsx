@@ -8,11 +8,20 @@ import styles from './Navbar.module.css';
 
 gsap.registerPlugin();
 
-const NAV_LINKS = [
+interface NavLink {
+  label: string;
+  href: string;
+  active?: boolean;
+  hasDropdown?: boolean;
+  dropdown?: { label: string; href: string }[];
+}
+
+const NAV_LINKS: NavLink[] = [
   { label: 'Home', href: '/', active: true },
   { label: 'Printer Rental', href: '/printer-rental' },
   { label: 'Laptop Repair', href: '/laptop-repair' },
   { label: 'About Us', href: '/about-us' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -51,15 +60,12 @@ export default function Navbar() {
     >
       <div className={styles.container}>
         {/* Logo */}
-        <Link href="/" className={styles.logo} aria-label="PrintTech home">
+        <Link href="/" className={styles.logo} aria-label="Raion Technologies home">
           <span className={styles.logoIcon} aria-hidden="true">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <rect width="32" height="32" rx="8" fill="#2563EB" />
-              <text x="6" y="22" fontFamily="Poppins,sans-serif" fontSize="16" fontWeight="700" fill="#fff">P</text>
-            </svg>
+            <img src="/brandlogo.png" alt="Raion Technologies Icon" width="32" height="32" style={{ objectFit: 'contain' }} />
           </span>
           <span className={styles.logoText}>
-            <span className={styles.logoName}>PrintTech</span>
+            <span className={styles.logoName}>Raion Technologies</span>
             <span className={styles.logoTagline}>Print. Support. Simplified.</span>
           </span>
         </Link>

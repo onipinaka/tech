@@ -3,8 +3,8 @@ import Footer from '../components/Footer';
 import styles from '../components/LegalPage.module.css';
 
 export const metadata = {
-  title: 'Refund Policy | PrintTech',
-  description: 'Refund Policy for PrintTech services.',
+  title: 'Refund Policy | Raion Technologies',
+  description: 'Refund Policy for Raion Technologies services.',
 };
 
 export default function RefundPolicy() {
@@ -19,7 +19,7 @@ export default function RefundPolicy() {
 
             <h2>1. General Refund Terms</h2>
             <p>
-              At PrintTech, we strive to ensure absolute customer satisfaction with our rentals and repair services. If you are not entirely satisfied with your purchase or service, we're here to help.
+              At Raion Technologies, we strive to ensure absolute customer satisfaction with our rentals and repair services. If you are not entirely satisfied with your purchase or service, we're here to help.
             </p>
 
             <h2>2. Repair Services</h2>
@@ -49,7 +49,7 @@ export default function RefundPolicy() {
 
             <h2>5. Contact Us</h2>
             <p>
-              If you have any questions on how to return your item or request a refund, contact us at support@printtech.com.
+              If you have any questions on how to return your item or request a refund, contact us at support@raiontechnologies.com.
             </p>
           </div>
         </div>

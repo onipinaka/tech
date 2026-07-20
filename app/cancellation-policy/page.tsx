@@ -3,8 +3,8 @@ import Footer from '../components/Footer';
 import styles from '../components/LegalPage.module.css';
 
 export const metadata = {
-  title: 'Cancellation Policy | PrintTech',
-  description: 'Cancellation Policy for PrintTech services.',
+  title: 'Cancellation Policy | Raion Technologies',
+  description: 'Cancellation Policy for Raion Technologies services.',
 };
 
 export default function CancellationPolicy() {
@@ -43,7 +43,7 @@ export default function CancellationPolicy() {
             </p>
             <ul>
               <li><strong>Phone:</strong> +91 96237 89414</li>
-              <li><strong>Email:</strong> support@printtech.com</li>
+              <li><strong>Email:</strong> support@raiontechnologies.com</li>
             </ul>
             <p>
               Please include your name, contact information, and appointment/rental details to expedite the cancellation process.

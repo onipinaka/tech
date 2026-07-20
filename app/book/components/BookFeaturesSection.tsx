@@ -49,7 +49,7 @@ export default function BookFeaturesSection() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h2 className={styles.title}>Why Book with PrintTech?</h2>
+        <h2 className={styles.title}>Why Book with Raion Technologies?</h2>
         
         <div className={styles.grid}>
           {features.map((feature, i) => (

@@ -143,7 +143,7 @@ export default function ContactContentSection() {
               </div>
               <div className={styles.infoText}>
                 <h4 className={styles.infoLabel}>Email Us</h4>
-                <p className={styles.infoValue}>support@printtech.com</p>
+                <p className={styles.infoValue}>support@raiontechnologies.com</p>
                 <p className={styles.infoSubValue}>We reply within a few hours</p>
               </div>
             </div>
@@ -157,7 +157,7 @@ export default function ContactContentSection() {
               </div>
               <div className={styles.infoText}>
                 <h4 className={styles.infoLabel}>Visit Us</h4>
-                <p className={styles.infoValue}>PrintTech Service Center</p>
+                <p className={styles.infoValue}>Raion Technologies Service Center</p>
                 <p className={styles.infoSubValue}>Pune, Maharashtra, India</p>
               </div>
             </div>
