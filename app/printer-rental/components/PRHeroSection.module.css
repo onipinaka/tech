@@ -240,6 +240,9 @@
   .featureItem {
     text-align: left;
   }
+  .actions {
+    justify-content: center;
+  }
   .badge1 { right: -5%; }
   .badge2 { right: -15%; }
   .badge3 { right: 5%; }

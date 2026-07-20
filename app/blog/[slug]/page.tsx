@@ -6,17 +6,12 @@ import Footer from '../../components/Footer';
 import styles from './BlogPost.module.css';
 import { createClient } from '../../../utils/supabase/server';
 
-// Note: generateStaticParams might not be fully functional with Supabase without caching strategies.
-// We'll leave it simple for now, as it's better to dynamically render or use revalidate.
-export async function generateStaticParams() {
-  // Can be left empty for dynamic rendering in App Router
-  return [];
-}
+
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const supabase = await createClient();
-  const { data: post } = await supabase.from('blogs').select('*').eq('slug', resolvedParams.slug).single();
+  const { data: post } = await supabase.from('blogs').select('*').eq('slug', decodeURIComponent(resolvedParams.slug)).single();
   
   if (!post) {
     return {
@@ -33,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const supabase = await createClient();
-  const { data: post } = await supabase.from('blogs').select('*').eq('slug', resolvedParams.slug).single();
+  const { data: post } = await supabase.from('blogs').select('*').eq('slug', decodeURIComponent(resolvedParams.slug)).single();
 
   if (!post) {
     notFound();

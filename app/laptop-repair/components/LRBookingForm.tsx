@@ -10,15 +10,15 @@ export default function LRBookingForm() {
     e.preventDefault();
     setSubmitStatus('submitting');
     setErrorMessage('');
-    
+
     try {
       const formData = new FormData(e.currentTarget);
-      const response = await fetch('https://formsubmit.co/ajax/viveksharma9451@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/onipinak@gmail.com', {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' }
       });
-      
+
       const data = await response.json().catch(() => ({}));
 
       if (response.ok) {

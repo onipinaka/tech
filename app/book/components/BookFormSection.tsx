@@ -11,7 +11,7 @@ export default function BookFormSection() {
   const defaultNotes = customNotes ? customNotes : (planName ? `Interested in the ${planName.charAt(0).toUpperCase() + planName.slice(1)} Plan.` : '');
 
   const [serviceType, setServiceType] = useState(initialService);
-  
+
   // Printer specific states
   const [printerServiceRequired, setPrinterServiceRequired] = useState(planName ? 'Printer Rental' : '');
 
@@ -22,15 +22,15 @@ export default function BookFormSection() {
     e.preventDefault();
     setSubmitStatus('submitting');
     setErrorMessage('');
-    
+
     try {
       const formData = new FormData(e.currentTarget);
-      const response = await fetch('https://formsubmit.co/ajax/viveksharma9451@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/onipinak@gmail.com', {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' }
       });
-      
+
       const data = await response.json().catch(() => ({}));
 
       if (response.ok) {
@@ -52,14 +52,14 @@ export default function BookFormSection() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        
+
         {/* Left Column: Form */}
         <div className={styles.formCol}>
           <h2 className={styles.sectionTitle}>Service Details</h2>
           <p className={styles.sectionSubtitle}>Please provide your details and select the service you need.</p>
-          
+
           <form onSubmit={handleAjaxSubmit} className={styles.formGrid}>
-            
+
             {/* Service Type Selection */}
             <div className={`${styles.formGroup} ${styles.fullWidth}`}>
               <label className={styles.label}>Service Type <span className={styles.required}>*</span></label>
@@ -136,8 +136,8 @@ export default function BookFormSection() {
                 <div className={`${styles.formGroup} ${styles.fullWidth}`}>
                   <label className={styles.label}>Service Required <span className={styles.required}>*</span></label>
                   <select name="serviceRequired"
-                    className={styles.input} 
-                    required 
+                    className={styles.input}
+                    required
                     value={printerServiceRequired}
                     onChange={(e) => setPrinterServiceRequired(e.target.value)}
                   >
@@ -233,7 +233,7 @@ export default function BookFormSection() {
                   <label className={styles.label}>Address <span className={styles.required}>*</span></label>
                   <input type="text" name="address" className={styles.input} placeholder="Enter complete address" required />
                 </div>
-                
+
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Laptop Brand</label>
                   <select className={styles.input} defaultValue="">
@@ -334,7 +334,7 @@ export default function BookFormSection() {
                     <option value="Other">Other</option>
                   </select>
                 </div>
-                
+
                 <div className={`${styles.formGroup} ${styles.fullWidth}`}>
                   <label className={styles.label}>Subject</label>
                   <input type="text" name="subject" className={styles.input} placeholder="Enquiry subject" />
@@ -385,7 +385,7 @@ export default function BookFormSection() {
         <div className={styles.sidebarCol}>
           <div className={styles.sidebarBox}>
             <h3 className={styles.sidebarTitle}>Service You Can Book</h3>
-            
+
             {/* Printer Services */}
             <div className={styles.serviceListCard}>
               <div className={styles.serviceIconWrap}>
