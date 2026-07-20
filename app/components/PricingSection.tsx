@@ -55,7 +55,7 @@ export default function PricingSection() {
       {/* Background Printer Image */}
       <div className={styles.printerBgWrapper}>
         {/* Placeholder image tag for the printer */}
-        <img src="/printer.png" alt="" className={styles.printerImg} />
+        <img src="/printer.webp" alt="" className={styles.printerImg} />
       </div>
 
       <div className={styles.container}>

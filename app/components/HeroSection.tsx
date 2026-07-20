@@ -264,7 +264,7 @@ export default function HeroSection() {
 
             {/* Hero Image - floats above gradient */}
             <Image
-              src="/f.png"
+              src="/f.webp"
               alt="Professional printer rental and IT support - Raion Technologies"
               width={700}
               height={600}

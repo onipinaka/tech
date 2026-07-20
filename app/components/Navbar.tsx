@@ -62,7 +62,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className={styles.logo} aria-label="Raion Technologies home">
           <span className={styles.logoIcon} aria-hidden="true">
-            <img src="/brandlogo.png" alt="Raion Technologies Icon" width="32" height="32" style={{ objectFit: 'contain' }} />
+            <img src="/brandlogo.webp" alt="Raion Technologies Icon" width="32" height="32" style={{ objectFit: 'contain' }} />
           </span>
           <span className={styles.logoText}>
             <span className={styles.logoName}>Raion Technologies</span>

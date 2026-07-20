@@ -53,7 +53,7 @@ export default function HomeServiceSection() {
         </div>
 
         <div className={styles.imageWrapper}>
-          <img src="/lastpp.png" alt="Technician helping customer" className={styles.image} />
+          <img src="/lastpp.webp" alt="Technician helping customer" className={styles.image} />
         </div>
       </div>
     </section>

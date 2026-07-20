@@ -9,7 +9,7 @@ const REVIEWS = [
     author: {
       name: 'Rahul Mehta',
       role: 'Office Manager, Pune',
-      image: '/avatar1.png'
+      image: 'https://i.pravatar.cc/100?img=5'
     }
   },
   {
@@ -19,7 +19,7 @@ const REVIEWS = [
     author: {
       name: 'Neha Sharma',
       role: 'HR, Mumbai',
-      image: '/avatar2.png'
+      image: 'https://i.pravatar.cc/100?img=12'
     }
   },
   {
@@ -29,7 +29,7 @@ const REVIEWS = [
     author: {
       name: 'Vikram Patil',
       role: 'Business Owner, Nashik',
-      image: '/avatar3.png'
+      image: 'https://i.pravatar.cc/100?img=11'
     }
   }
 ];

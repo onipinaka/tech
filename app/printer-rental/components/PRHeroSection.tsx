@@ -86,7 +86,7 @@ export default function PRHeroSection() {
 
         <div className={styles.rightCol}>
           <div className={styles.imageBg}>
-            <img src="/printer copy.png" alt="Printer" className={styles.printerImg} />
+            <img src="/printer-copy.webp" alt="Printer" className={styles.printerImg} />
 
             <div className={`${styles.floatingBadge} ${styles.badge1}`}>
               <div className={styles.badgeIconWrap}>

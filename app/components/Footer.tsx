@@ -9,7 +9,7 @@ export default function Footer() {
         {/* Column 1: Brand & Info */}
         <div className={styles.brandCol}>
           <div className={styles.logoWrap}>
-            <img src="/brandlogo.png" alt="Raion Technologies Logo" className={styles.logo} />
+            <img src="/brandlogo.webp" alt="Raion Technologies Logo" className={styles.logo} />
             <div className={styles.logoTextWrap}>
               <h2 className={styles.logoTitle}>Raion Technologies</h2>
               <p className={styles.logoTagline}>Print. Support. Simplified.</p>
