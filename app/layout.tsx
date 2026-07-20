@@ -11,6 +11,21 @@ export const metadata: Metadata = {
     description:
       'Smart printing solutions, expert IT support and reliable service - delivered to your home or office.',
     type: 'website',
+    images: [
+      {
+        url: '/lastpp.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Raion Technologies Preview',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Raion Technologies - Professional Printer Rental & IT Support',
+    description:
+      'Smart printing solutions, expert IT support and reliable service - delivered to your home or office.',
+    images: ['/lastpp.webp'],
   },
 };
 
