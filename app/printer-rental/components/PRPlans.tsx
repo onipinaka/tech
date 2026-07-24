@@ -1,58 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './PRPlans.module.css';
+import { createClient } from '@/utils/supabase/server';
 
-const PLANS = [
-  {
-    id: 'basic',
-    name: 'Basic Plan',
-    subtitle: 'Perfect for small offices & low volume printing.',
-    price: '1,999',
-    features: [
-      'Up to 2,000 Pages/Month',
-      'Black & White Printing',
-      'Toner & Supplies Included',
-      'On-site Support (48 Hrs)',
-      'Regular Maintenance',
-    ],
-    isPopular: false,
-    buttonText: 'Get Started'
-  },
-  {
-    id: 'professional',
-    name: 'Professional Plan',
-    subtitle: 'Ideal for growing businesses with higher print needs.',
-    price: '3,499',
-    features: [
-      'Up to 5,000 Pages/Month',
-      'Black & White Printing',
-      'Toner & Supplies Included',
-      'On-site Support (24 Hrs)',
-      'Regular Maintenance',
-      'Free Replacement (If needed)',
-    ],
-    isPopular: true,
-    buttonText: 'Get Started'
-  },
-  {
-    id: 'enterprise',
-    name: 'Enterprise Plan',
-    subtitle: 'High volume printing for large teams & enterprises.',
-    price: 'Custom',
-    features: [
-      'Unlimited Pages',
-      'Black & White / Color Printing',
-      'Toner & Supplies Included',
-      'Priority Support (Same Day)',
-      'Regular Maintenance',
-      'Dedicated Account Manager',
-    ],
-    isPopular: false,
-    buttonText: 'Contact Us'
-  },
-];
+export default async function PRPlans() {
+  const supabase = await createClient();
+  const { data: plans = [] } = await supabase
+    .from('pricing_plans')
+    .select('*')
+    .eq('section', 'home') // Reusing the same plans as the home page
+    .order('order_index', { ascending: true });
 
-export default function PRPlans() {
+  const displayPlans = plans && plans.length > 0 ? plans : [];
+
   return (
     <section id="plans" className={styles.section}>
       <div className={styles.container}>
@@ -63,9 +23,9 @@ export default function PRPlans() {
         </div>
 
         <div className={styles.cardsGrid}>
-          {PLANS.map((plan) => (
-            <div key={plan.id} className={`${styles.card} ${plan.isPopular ? styles.popularCard : ''}`}>
-              {plan.isPopular && (
+          {displayPlans.map((plan) => (
+            <div key={plan.id} className={`${styles.card} ${plan.is_popular ? styles.popularCard : ''}`}>
+              {plan.is_popular && (
                 <div className={styles.popularBadge}>MOST POPULAR</div>
               )}
               
@@ -80,7 +40,7 @@ export default function PRPlans() {
               </div>
 
               <ul className={styles.featureList}>
-                {plan.features.map((feature, i) => (
+                {plan.features.map((feature: string, i: number) => (
                   <li key={i} className={styles.featureItem}>
                     <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className={styles.checkIcon}>
                       <path d="M4 10l4 4 8-8" stroke="#2563EB" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -91,8 +51,8 @@ export default function PRPlans() {
               </ul>
 
               <Link href={`/book?service=printer&plan=${plan.id}`} style={{ textDecoration: 'none' }}>
-                <button className={`${styles.btn} ${plan.isPopular ? styles.btnSolid : styles.btnOutline}`}>
-                  {plan.buttonText}
+                <button className={`${styles.btn} ${plan.is_popular ? styles.btnSolid : styles.btnOutline}`}>
+                  {plan.button_text}
                 </button>
               </Link>
             </div>

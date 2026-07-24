@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Link from 'next/link';
@@ -11,13 +12,12 @@ gsap.registerPlugin();
 interface NavLink {
   label: string;
   href: string;
-  active?: boolean;
   hasDropdown?: boolean;
   dropdown?: { label: string; href: string }[];
 }
 
 const NAV_LINKS: NavLink[] = [
-  { label: 'Home', href: '/', active: true },
+  { label: 'Home', href: '/' },
   { label: 'Printer Rental', href: '/printer-rental' },
   { label: 'Laptop Repair', href: '/laptop-repair' },
   { label: 'About Us', href: '/about-us' },
@@ -26,6 +26,7 @@ const NAV_LINKS: NavLink[] = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname() || '/';
   const navRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -62,7 +63,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className={styles.logo} aria-label="Raion Technologies home">
           <span className={styles.logoIcon} aria-hidden="true">
-            <img src="/brandlogo.webp" alt="Raion Technologies Icon" width="32" height="32" style={{ objectFit: 'contain' }} />
+            <img src="/brandlogo.webp" alt="Raion Technologies Icon" width="64" height="64" style={{ objectFit: 'contain' }} />
           </span>
           <span className={styles.logoText}>
             <span className={styles.logoName}>Raion Technologies</span>
@@ -81,8 +82,8 @@ export default function Navbar() {
             >
               <Link
                 href={link.href}
-                className={`${styles.navLink} ${link.active ? styles.active : ''}`}
-                aria-current={link.active ? 'page' : undefined}
+                className={`${styles.navLink} ${pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)) ? styles.active : ''}`}
+                aria-current={pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)) ? 'page' : undefined}
               >
                 {link.label}
                 {link.hasDropdown && (
@@ -139,7 +140,7 @@ export default function Navbar() {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className={`${styles.mobileLink} ${link.active ? styles.mobileLinkActive : ''}`}
+                  className={`${styles.mobileLink} ${pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)) ? styles.mobileLinkActive : ''}`}
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}

@@ -1,60 +1,23 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './PricingSection.module.css';
+import { createClient } from '@/utils/supabase/server';
 
-const PLANS = [
-  {
-    id: 'standard',
-    name: 'Standard Plan',
-    subtitle: 'Perfect for small offices and startups.',
-    price: '999',
-    features: [
-      'Up to 1,000 Pages / month',
-      'Black & White Printing',
-      'Regular Maintenance',
-      'All Consumables Included',
-      '24/7 Support',
-    ],
-    isPopular: false,
-  },
-  {
-    id: 'medium',
-    name: 'Medium Plan',
-    subtitle: 'Ideal for growing businesses.',
-    price: '1,999',
-    features: [
-      'Up to 2,500 Pages / month',
-      'Black & White / Colour',
-      'Regular Maintenance',
-      'All Consumables Included',
-      '24/7 Support',
-      'Priority Service',
-    ],
-    isPopular: true,
-  },
-  {
-    id: 'enterprise',
-    name: 'Enterprise Plan',
-    subtitle: 'Best for high volume printing needs.',
-    price: '3,999',
-    features: [
-      'Up to 6,000 Pages / month',
-      'Black & White / Colour',
-      'Regular Maintenance',
-      'All Consumables Included',
-      '24/7 Support',
-      'Custom Solutions',
-    ],
-    isPopular: false,
-  },
-];
+export default async function PricingSection() {
+  const supabase = await createClient();
+  const { data: plans = [] } = await supabase
+    .from('pricing_plans')
+    .select('*')
+    .eq('section', 'home')
+    .order('order_index', { ascending: true });
 
-export default function PricingSection() {
+  // Use fallback if database is empty
+  const displayPlans = plans && plans.length > 0 ? plans : [];
+
   return (
     <section className={styles.pricingSection}>
       {/* Background Printer Image */}
       <div className={styles.printerBgWrapper}>
-        {/* Placeholder image tag for the printer */}
         <img src="/printer.webp" alt="" className={styles.printerImg} />
       </div>
 
@@ -76,9 +39,9 @@ export default function PricingSection() {
 
         {/* Pricing Cards */}
         <div className={styles.cardsGrid}>
-          {PLANS.map((plan) => (
-            <div key={plan.id} className={`${styles.card} ${plan.isPopular ? styles.popularCard : ''}`}>
-              {plan.isPopular && (
+          {displayPlans.map((plan) => (
+            <div key={plan.id} className={`${styles.card} ${plan.is_popular ? styles.popularCard : ''}`}>
+              {plan.is_popular && (
                 <div className={styles.popularBadge}>
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -98,7 +61,7 @@ export default function PricingSection() {
               </div>
 
               <ul className={styles.featureList}>
-                {plan.features.map((feature, i) => (
+                {plan.features.map((feature: string, i: number) => (
                   <li key={i} className={styles.featureItem}>
                     <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className={styles.checkIcon}>
                       <circle cx="10" cy="10" r="10" fill="#3B82F6" />
@@ -110,8 +73,8 @@ export default function PricingSection() {
               </ul>
 
               <Link href={`/book?service=printer&plan=${plan.id}`} style={{ textDecoration: 'none' }}>
-                <button className={`${styles.btn} ${plan.isPopular ? styles.btnSolid : styles.btnOutline}`}>
-                  {plan.id === 'enterprise' ? 'Request Quote' : 'Book Now'}
+                <button className={`${styles.btn} ${plan.is_popular ? styles.btnSolid : styles.btnOutline}`}>
+                  {plan.button_text}
                 </button>
               </Link>
             </div>

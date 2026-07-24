@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   background-color: #FFFFFF;
-  padding: 100px 0;
+  padding: 100px 0 20px; /* Reduced bottom padding to fix gap */
   overflow: hidden;
   font-family: var(--font-body, system-ui, sans-serif);
 }
@@ -36,6 +36,7 @@
   height: auto;
   z-index: 1;
   object-fit: contain;
+  transform: translateX(-80px); /* Pushes the image slightly to the right */
 }
 
 /* ── Header ── */
@@ -304,5 +305,11 @@
   }
   .dot {
     display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .printerImg {
+    transform: translateX(-130px); /* Shifts the image even more on desktop */
   }
 }

@@ -6,6 +6,7 @@ import PricingSection from './components/PricingSection';
 import HomeServiceSection from './components/HomeServiceSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import Footer from './components/Footer';
+import MobilePopup from './components/MobilePopup';
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <HomeServiceSection />
       <TestimonialsSection />
       <Footer />
+      <MobilePopup />
     </main>
   );
 }

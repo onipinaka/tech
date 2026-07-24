@@ -8,7 +8,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h1 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 'bold' }}>Raion Admin Panel</h1>
           <nav>
+            <Link href="/admin/printers" style={{ color: 'white', textDecoration: 'none', marginRight: '1rem' }}>Printers</Link>
             <Link href="/admin/blogs" style={{ color: 'white', textDecoration: 'none', marginRight: '1rem' }}>Blogs</Link>
+            <Link href="/admin/pricing-plans" style={{ color: 'white', textDecoration: 'none', marginRight: '1rem' }}>Pricing Plans</Link>
             <Link href="/" style={{ color: '#9ca3af', textDecoration: 'none' }}>View Public Site</Link>
           </nav>
         </div>

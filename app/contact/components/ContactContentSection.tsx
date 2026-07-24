@@ -5,6 +5,17 @@ import styles from './ContactContentSection.module.css';
 export default function ContactContentSection() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [messageText, setMessageText] = useState('');
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const prefilledMessage = params.get('message');
+      if (prefilledMessage) {
+        setMessageText(prefilledMessage);
+      }
+    }
+  }, []);
 
   const handleAjaxSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,7 +49,7 @@ export default function ContactContentSection() {
   };
 
   return (
-    <section className={styles.section}>
+    <section id="contact-form" className={styles.section}>
       <div className={styles.container}>
         {/* Left Column: Form */}
         <div className={styles.formCol}>
@@ -59,14 +70,14 @@ export default function ContactContentSection() {
             </div>
 
             <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
-              <label>Email Address <span className={styles.required}>*</span></label>
-              <input type="email" name="email" placeholder="Enter your email address" required />
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="Enter your email address (optional)" />
             </div>
 
             <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
-              <label>Subject <span className={styles.required}>*</span></label>
-              <select name="subject" required defaultValue="">
-                <option value="" disabled>Select a subject</option>
+              <label>Subject</label>
+              <select name="subject" defaultValue="">
+                <option value="" disabled>Select a subject (optional)</option>
                 <option value="support">Technical Support</option>
                 <option value="booking">Book a Service</option>
                 <option value="feedback">Feedback</option>
@@ -76,7 +87,14 @@ export default function ContactContentSection() {
 
             <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
               <label>Message <span className={styles.required}>*</span></label>
-              <textarea name="message" placeholder="Type your message here..." rows={4} required></textarea>
+              <textarea 
+                name="message" 
+                placeholder="Type your message here..." 
+                rows={4} 
+                required
+                value={messageText}
+                onChange={(e) => setMessageText(e.target.value)}
+              ></textarea>
             </div>
 
             <div className={`${styles.inputGroup} ${styles.fullWidth}`}>

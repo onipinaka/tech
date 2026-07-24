@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import PRHeroSection from './components/PRHeroSection';
 import PRWhyChoose from './components/PRWhyChoose';
+import PRPrintersSection from './components/PRPrintersSection';
 import PRPlans from './components/PRPlans';
 import PRIndustries from './components/PRIndustries';
 import PRCTA from './components/PRCTA';
@@ -17,6 +18,7 @@ export default function PrinterRentalPage() {
       <Navbar />
       <PRHeroSection />
       <PRWhyChoose />
+      <PRPrintersSection />
       <PRPlans />
       <PRIndustries />
       <PRCTA />
