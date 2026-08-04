@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import styles from './ContactContentSection.module.css';
+import { sendEmailAction } from '@/app/actions/sendEmail';
 
 export default function ContactContentSection() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -24,21 +25,15 @@ export default function ContactContentSection() {
 
     try {
       const formData = new FormData(e.currentTarget);
-      const response = await fetch('https://formsubmit.co/ajax/support@raiontechnologies.com', {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
+      const result = await sendEmailAction(formData, 'Contact Us Form');
 
-      const data = await response.json().catch(() => ({}));
-
-      if (response.ok) {
+      if (result.success) {
         setSubmitStatus('success');
         (e.target as HTMLFormElement).reset();
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
         setSubmitStatus('error');
-        setErrorMessage(data.message || 'Something went wrong. Please try again.');
+        setErrorMessage(result.message || 'Something went wrong. Please try again.');
         setTimeout(() => setSubmitStatus('idle'), 5000);
       }
     } catch (error) {
