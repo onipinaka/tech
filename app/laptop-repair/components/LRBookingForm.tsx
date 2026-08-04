@@ -3,39 +3,13 @@ import React, { useState } from 'react';
 import styles from './LRBookingForm.module.css';
 
 export default function LRBookingForm() {
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [siteUrl, setSiteUrl] = useState('');
 
-  const handleAjaxSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmitStatus('submitting');
-    setErrorMessage('');
-
-    try {
-      const formData = new FormData(e.currentTarget);
-      const response = await fetch('https://formsubmit.co/ajax/e71ff2eb06eaed54fe67d81e7b8030a2', {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      const data = await response.json().catch(() => ({}));
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        (e.target as HTMLFormElement).reset();
-        setTimeout(() => setSubmitStatus('idle'), 5000);
-      } else {
-        setSubmitStatus('error');
-        setErrorMessage(data.message || 'Something went wrong. Please try again.');
-        setTimeout(() => setSubmitStatus('idle'), 5000);
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-      setErrorMessage('Network error. Please check your connection.');
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setSiteUrl(window.location.origin + '/thank-you');
     }
-  };
+  }, []);
 
   return (
     <section className={styles.section}>
@@ -47,7 +21,10 @@ export default function LRBookingForm() {
         </div>
 
         <div className={styles.formCard}>
-          <form onSubmit={handleAjaxSubmit} className={styles.formGrid}>
+          <form action="https://formsubmit.co/support@raiontechnologies.com" method="POST" className={styles.formGrid}>
+            <input type="hidden" name="_next" value={siteUrl} />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_autoresponse" value="Thank you for contacting Raion Technologies! We have received your repair request and our team will get back to you shortly. Here are our details: Raion Technologies, Pune, +91 96237 89414." />
             <div className={styles.inputGroup}>
               <label>Full Name <span className={styles.required}>*</span></label>
               <input type="text" name="name" placeholder="Enter your full name" required />
@@ -112,26 +89,14 @@ export default function LRBookingForm() {
             </div>
 
             <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
-              {submitStatus === 'error' && (
-                <div style={{ color: '#ef4444', fontSize: '13px', textAlign: 'center', marginBottom: '8px' }}>
-                  {errorMessage}
-                </div>
-              )}
-              {submitStatus === 'success' && (
-                <div style={{ color: '#15803d', backgroundColor: '#dcfce3', padding: '12px', borderRadius: '6px', fontSize: '14px', textAlign: 'center', marginBottom: '12px', border: '1px solid #bbf7d0' }}>
-                  ✅ <strong>Success!</strong> Your request has been sent successfully. We will get back to you shortly.
-                </div>
-              )}
-              <button type="submit" className={styles.submitBtn} disabled={submitStatus === 'submitting' || submitStatus === 'success'}>
-                {submitStatus === 'submitting' ? 'Submitting...' : submitStatus === 'success' ? '✅ Request Sent!' : submitStatus === 'error' ? '❌ Error' : (
-                  <>
-                    Submit Request
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                  </>
-                )}
+              <button type="submit" className={styles.submitBtn}>
+                <>
+                  Submit Request
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </>
               </button>
             </div>
           </form>

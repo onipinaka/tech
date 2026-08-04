@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './QuickBookForm.module.css';
 
 const SERVICES = [
@@ -13,39 +13,13 @@ const SERVICES = [
 ];
 
 export default function QuickBookForm() {
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [siteUrl, setSiteUrl] = useState('');
 
-  const handleAjaxSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmitStatus('submitting');
-    setErrorMessage('');
-
-    try {
-      const formData = new FormData(e.currentTarget);
-      const response = await fetch('https://formsubmit.co/ajax/e71ff2eb06eaed54fe67d81e7b8030a2', {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      const data = await response.json().catch(() => ({}));
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        (e.target as HTMLFormElement).reset();
-        setTimeout(() => setSubmitStatus('idle'), 5000);
-      } else {
-        setSubmitStatus('error');
-        setErrorMessage(data.message || 'Something went wrong. Please try again.');
-        setTimeout(() => setSubmitStatus('idle'), 5000);
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-      setErrorMessage('Network error. Please check your connection.');
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setSiteUrl(window.location.origin + '/thank-you');
     }
-  };
+  }, []);
 
   const [form, setForm] = useState({
     name: '',
@@ -73,7 +47,10 @@ export default function QuickBookForm() {
         </span>
       </div>
 
-      <form onSubmit={handleAjaxSubmit} className={styles.form}>
+      <form action="https://formsubmit.co/support@raiontechnologies.com" method="POST" className={styles.form}>
+        <input type="hidden" name="_next" value={siteUrl} />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_autoresponse" value="Thank you for contacting Raion Technologies! We have received your quick booking request and our team will get back to you shortly. Here are our details: Raion Technologies, Pune, +91 96237 89414." />
         {/* Your Name */}
         <div className={styles.field}>
           <label htmlFor="qb-name" className="sr-only">Your Name</label>
@@ -176,23 +153,12 @@ export default function QuickBookForm() {
         </div>
 
         {/* Submit Messages */}
-        {submitStatus === 'error' && (
-          <div style={{ color: '#ef4444', fontSize: '13px', textAlign: 'center', marginBottom: '8px' }}>
-            {errorMessage}
-          </div>
-        )}
-        {submitStatus === 'success' && (
-          <div style={{ color: '#15803d', backgroundColor: '#dcfce3', padding: '10px', borderRadius: '6px', fontSize: '13px', textAlign: 'center', marginBottom: '12px', border: '1px solid #bbf7d0' }}>
-            ✅ <strong>Success!</strong> We will call you back shortly.
-          </div>
-        )}
         <button
           type="submit"
           className={styles.submitBtn}
           id="quickbook-submit-btn"
-          disabled={submitStatus === 'submitting' || submitStatus === 'success'}
         >
-          {submitStatus === 'submitting' ? 'Submitting...' : submitStatus === 'success' ? '✅ Success!' : submitStatus === 'error' ? '❌ Error' : 'Submit Request'}
+          Submit Request
         </button>
       </form>
 
