@@ -7,8 +7,8 @@ export default function AboutStorySection() {
       <div className={styles.container}>
         <div className={styles.imageCol}>
           <div className={styles.imageWrap}>
-            {/* Using lastpp.png as the placeholder for the technician image */}
-            <img src="/lastpp.webp" alt="Technician repairing a device" className={styles.storyImage} />
+            {/* Using about_us_tech_indian_raion.png as the placeholder for the technician image */}
+            <img src="/about_us_tech_indian_raion.png" alt="Technician explaining to customer" className={styles.storyImage} />
           </div>
         </div>
         

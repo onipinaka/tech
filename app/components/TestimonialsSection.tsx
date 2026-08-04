@@ -1,40 +1,17 @@
 import React from 'react';
 import styles from './TestimonialsSection.module.css';
+import { createClient } from '../../utils/supabase/server';
 
-const REVIEWS = [
-  {
-    id: 1,
-    rating: 5.0,
-    text: 'Excellent service! The technician was very professional and fixed our printer the same day.',
-    author: {
-      name: 'Rahul Mehta',
-      role: 'Office Manager, Pune',
-      image: 'https://i.pravatar.cc/100?img=5'
-    }
-  },
-  {
-    id: 2,
-    rating: 5.0,
-    text: 'Very quick response and reliable service. Our monthly printer rental has been smooth and hassle-free.',
-    author: {
-      name: 'Neha Sharma',
-      role: 'HR, Mumbai',
-      image: 'https://i.pravatar.cc/100?img=12'
-    }
-  },
-  {
-    id: 3,
-    rating: 5.0,
-    text: 'Great support and maintenance service. Highly recommended for businesses.',
-    author: {
-      name: 'Vikram Patil',
-      role: 'Business Owner, Nashik',
-      image: 'https://i.pravatar.cc/100?img=11'
-    }
-  }
-];
+export default async function TestimonialsSection() {
+  const supabase = await createClient();
+  
+  const { data: dbReviews, error } = await supabase
+    .from('reviews')
+    .select('*')
+    .order('created_at', { ascending: false });
 
-export default function TestimonialsSection() {
+  const reviews = (dbReviews || []).slice(0, 3);
+
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -59,7 +36,7 @@ export default function TestimonialsSection() {
           </button>
 
           <div className={styles.cardsContainer}>
-            {REVIEWS.map((review) => (
+            {reviews.map((review) => (
               <div key={review.id} className={styles.card}>
                 <div className={styles.rating}>
                   <div className={styles.stars}>
@@ -69,17 +46,17 @@ export default function TestimonialsSection() {
                       </svg>
                     ))}
                   </div>
-                  <span className={styles.ratingValue}>{review.rating.toFixed(1)}</span>
+                  <span className={styles.ratingValue}>{review.rating?.toFixed(1) || '5.0'}</span>
                 </div>
                 <p className={styles.reviewText}>{review.text}</p>
                 <div className={styles.author}>
                   <div className={styles.avatarPlaceholder}>
                     {/* Placeholder avatar circle with initials if image not found */}
-                    <span className={styles.initials}>{review.author.name.charAt(0)}</span>
+                    <span className={styles.initials}>{review.name ? review.name.charAt(0) : 'U'}</span>
                   </div>
                   <div className={styles.authorInfo}>
-                    <h4 className={styles.authorName}>{review.author.name}</h4>
-                    <p className={styles.authorRole}>{review.author.role}</p>
+                    <h4 className={styles.authorName}>{review.name}</h4>
+                    <p className={styles.authorRole}>{review.role}</p>
                   </div>
                 </div>
               </div>

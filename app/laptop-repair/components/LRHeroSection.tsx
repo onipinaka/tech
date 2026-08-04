@@ -89,7 +89,7 @@ export default function LRHeroSection() {
 
         <div className={styles.rightCol}>
           <div className={styles.imageBg}>
-            <img src="/laptop.webp" alt="Laptop Repair" className={styles.laptopImg} />
+            <img src="/laptop_repair_tech_man_exact.png" alt="Laptop Repair Technician" className={styles.laptopImg} />
 
             <div className={styles.warrantyBadge}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.warrantyIcon}>

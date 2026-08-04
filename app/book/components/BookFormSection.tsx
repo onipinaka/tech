@@ -15,13 +15,39 @@ export default function BookFormSection() {
   // Printer specific states
   const [printerServiceRequired, setPrinterServiceRequired] = useState(planName ? 'Printer Rental' : '');
 
-  const [siteUrl, setSiteUrl] = useState('');
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setSiteUrl(window.location.origin + '/thank-you');
+  const handleAjaxSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitStatus('submitting');
+    setErrorMessage('');
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      const response = await fetch('https://formsubmit.co/ajax/support@raiontechnologies.com', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        (e.target as HTMLFormElement).reset();
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      } else {
+        setSubmitStatus('error');
+        setErrorMessage(data.message || 'Something went wrong. Please try again.');
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setErrorMessage('Network error. Please check your connection.');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
     }
-  }, []);
+  };
 
   return (
     <section className={styles.section}>
@@ -32,10 +58,7 @@ export default function BookFormSection() {
           <h2 className={styles.sectionTitle}>Service Details</h2>
           <p className={styles.sectionSubtitle}>Please provide your details and select the service you need.</p>
 
-          <form action="https://formsubmit.co/support@raiontechnologies.com" method="POST" className={styles.formGrid}>
-            <input type="hidden" name="_next" value={siteUrl} />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_autoresponse" value="Thank you for contacting Raion Technologies! We have received your booking request and our team will get back to you shortly. Here are our details: Raion Technologies, Pune, +91 96237 89414." />
+          <form onSubmit={handleAjaxSubmit} className={styles.formGrid}>
 
             {/* Service Type Selection */}
             <div className={`${styles.formGroup} ${styles.fullWidth}`}>
@@ -324,16 +347,18 @@ export default function BookFormSection() {
             )}
 
             <div className={styles.fullWidth} style={{ marginTop: '16px' }}>
-              <button type="submit" className={styles.submitBtn}>
-                <>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                  </svg>
-                  Book Service Now
-                </>
+              <button type="submit" className={styles.submitBtn} disabled={submitStatus === 'submitting' || submitStatus === 'success'}>
+                {submitStatus === 'submitting' ? 'Submitting...' : submitStatus === 'success' ? '✅ Booking Confirmed!' : submitStatus === 'error' ? '❌ Error' : (
+                  <>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                      <line x1="16" y1="2" x2="16" y2="6"></line>
+                      <line x1="8" y1="2" x2="8" y2="6"></line>
+                      <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Book Service Now
+                  </>
+                )}
               </button>
               <div className={styles.secureWrap}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

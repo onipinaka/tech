@@ -7,11 +7,8 @@ export default function ContactContentSection() {
   const [errorMessage, setErrorMessage] = useState('');
   const [messageText, setMessageText] = useState('');
 
-  const [siteUrl, setSiteUrl] = useState('');
-
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
-      setSiteUrl(window.location.origin + '/thank-you');
       const params = new URLSearchParams(window.location.search);
       const prefilledMessage = params.get('message');
       if (prefilledMessage) {
@@ -19,6 +16,37 @@ export default function ContactContentSection() {
       }
     }
   }, []);
+
+  const handleAjaxSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitStatus('submitting');
+    setErrorMessage('');
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      const response = await fetch('https://formsubmit.co/ajax/support@raiontechnologies.com', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        (e.target as HTMLFormElement).reset();
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      } else {
+        setSubmitStatus('error');
+        setErrorMessage(data.message || 'Something went wrong. Please try again.');
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setErrorMessage('Network error. Please check your connection.');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    }
+  };
 
   return (
     <section id="contact-form" className={styles.section}>
@@ -30,10 +58,7 @@ export default function ContactContentSection() {
             <p className={styles.subtitle}>Fill out the form below and we'll get back to you.</p>
           </div>
 
-          <form action="https://formsubmit.co/support@raiontechnologies.com" method="POST" className={styles.formGrid}>
-            <input type="hidden" name="_next" value={siteUrl} />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_autoresponse" value="Thank you for contacting Raion Technologies! We have received your query and our team will get back to you shortly. Here are our details: Raion Technologies, Pune, +91 96237 89414." />
+          <form onSubmit={handleAjaxSubmit} className={styles.formGrid}>
             <div className={styles.inputGroup}>
               <label>Full Name <span className={styles.required}>*</span></label>
               <input type="text" name="name" placeholder="Enter your full name" required />
@@ -83,14 +108,16 @@ export default function ContactContentSection() {
                   ✅ <strong>Success!</strong> Your message has been sent successfully.
                 </div>
               )}
-              <button type="submit" className={styles.submitBtn}>
-                <>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                  </svg>
-                  Send Message
-                </>
+              <button type="submit" className={styles.submitBtn} disabled={submitStatus === 'submitting' || submitStatus === 'success'}>
+                {submitStatus === 'submitting' ? 'Sending...' : submitStatus === 'success' ? '✅ Message Sent!' : submitStatus === 'error' ? '❌ Error' : (
+                  <>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="22" y1="2" x2="11" y2="13"></line>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    Send Message
+                  </>
+                )}
               </button>
             </div>
           </form>

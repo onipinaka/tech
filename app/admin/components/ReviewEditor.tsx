@@ -29,6 +29,7 @@ export default function ReviewEditor({ initialData }: ReviewEditorProps) {
 
     const dataToSave = {
       ...form,
+      img: form.img || `https://ui-avatars.com/api/?name=${encodeURIComponent(form.name || 'User')}&background=random&color=fff`,
     };
 
     try {

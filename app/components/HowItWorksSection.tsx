@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from './HowItWorksSection.module.css';
 
 const STEPS = [
@@ -97,15 +98,17 @@ export default function HowItWorksSection() {
           
           <div className={styles.stepsGrid}>
             {STEPS.map((step) => (
-              <div key={step.id} className={styles.stepCard}>
-                <div className={styles.stepBadge}>{step.id}</div>
-                <div className={styles.iconCircle}>
-                  {step.icon}
+              <Link href="/book" key={step.id} style={{ textDecoration: 'none' }}>
+                <div className={styles.stepCard}>
+                  <div className={styles.stepBadge}>{step.id}</div>
+                  <div className={styles.iconCircle}>
+                    {step.icon}
+                  </div>
+                  <h3 className={styles.stepTitle}>{step.title}</h3>
+                  <div className={styles.divider}></div>
+                  <p className={styles.stepDesc}>{step.description}</p>
                 </div>
-                <h3 className={styles.stepTitle}>{step.title}</h3>
-                <div className={styles.divider}></div>
-                <p className={styles.stepDesc}>{step.description}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -125,9 +128,9 @@ export default function HowItWorksSection() {
               <strong>Need Help?</strong> Our support team is available 24/7 to assist you.
             </p>
           </div>
-          <a href="/contact" className={styles.ctaLink}>
-            Contact Us <span>&rarr;</span>
-          </a>
+          <Link href="/book" className={styles.ctaLink}>
+            Book a Service <span>&rarr;</span>
+          </Link>
         </div>
 
       </div>
