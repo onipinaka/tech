@@ -47,7 +47,7 @@ export default function QuickBookForm() {
         </span>
       </div>
 
-      <form action="https://formsubmit.co/jinishaenterprises@raiontechnologies.com" method="POST" className={styles.form}>
+      <form action="https://formsubmit.co/support@raiontechnologies.com" method="POST" className={styles.form}>
         <input type="hidden" name="_next" value={siteUrl} />
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_autoresponse" value="Thank you for contacting Raion Technologies! We have received your quick booking request and our team will get back to you shortly. Here are our details: Raion Technologies, Pune, +91 96237 89414." />

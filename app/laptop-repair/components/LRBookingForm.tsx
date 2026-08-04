@@ -21,7 +21,7 @@ export default function LRBookingForm() {
         </div>
 
         <div className={styles.formCard}>
-          <form action="https://formsubmit.co/jinishaenterprises@raiontechnologies.com" method="POST" className={styles.formGrid}>
+          <form action="https://formsubmit.co/support@raiontechnologies.com" method="POST" className={styles.formGrid}>
             <input type="hidden" name="_next" value={siteUrl} />
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_autoresponse" value="Thank you for contacting Raion Technologies! We have received your repair request and our team will get back to you shortly. Here are our details: Raion Technologies, Pune, +91 96237 89414." />
