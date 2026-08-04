@@ -61,7 +61,7 @@ export async function sendEmailAction(formData: FormData, sourceFormName: string
 
     // 2. Send an auto-reply to the user if they provided an email address
     const userEmail = fields.email;
-    let userMailPromise = Promise.resolve(); // Default empty promise
+    let userMailPromise: Promise<any> = Promise.resolve(); // Default empty promise
 
     if (userEmail && userEmail.includes('@')) {
       const autoReplyHtml = `
