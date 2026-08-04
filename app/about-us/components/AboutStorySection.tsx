@@ -13,15 +13,24 @@ export default function AboutStorySection() {
         </div>
         
         <div className={styles.textCol}>
-          <div className={styles.badge}>Our Story</div>
-          <h2 className={styles.title}>From a Small Idea to a Trusted Service Brand</h2>
+          <div className={styles.badge}>About Us</div>
+          <h2 className={styles.title}>Your Trusted Technology Service Partner</h2>
           
           <div className={styles.content}>
             <p>
-              Raion Technologies started with a simple goal &ndash; to provide honest, high-quality and affordable tech support to everyone. What began as a small local service has now grown into a trusted partner for homes, students and businesses.
+              Raion Technologies India Pvt. Ltd. is a trusted IT solutions company delivering reliable, innovative, and cost-effective technology services to businesses across India. Known as Jinisha Enterprises since 2015, we have built a strong reputation through quality service, technical excellence, and long-term customer relationships.
             </p>
             <p>
-              Today, we help thousands of customers keep their laptops and printers running smoothly, with fast service, genuine parts and a team that truly cares.
+              With over a decade of industry experience, we specialize in Managed Print Services (MPS), Printer AMC, Printer Rental, Per-Click Printing Solutions, Laptop & Desktop Repair, IT Infrastructure, Networking, CCTV Solutions, and Annual Maintenance Contracts (AMC). Our experienced team is committed to minimizing downtime and maximizing productivity by providing fast, dependable, and professional technical support.
+            </p>
+            <p>
+              At Raion Technologies, we believe technology should empower businesses, simplify operations, and create lasting value. Whether supporting manufacturing industries, corporate offices, educational institutions, or small and medium enterprises, we deliver customized technology solutions designed to meet each client’s unique business requirements.
+            </p>
+            <p>
+              Our mission is to become one of India’s most trusted technology service providers by combining innovation, quality, transparency, and exceptional customer support. We continuously invest in skilled professionals, advanced technologies, and customer-focused processes to ensure every client receives the highest standard of service.
+            </p>
+            <p>
+              Since 2015, our commitment has remained unchanged&mdash;to deliver reliable technology solutions with integrity, professionalism, and excellence.
             </p>
           </div>
         </div>

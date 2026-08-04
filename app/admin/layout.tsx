@@ -11,6 +11,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Link href="/admin/printers" style={{ color: 'white', textDecoration: 'none', marginRight: '1rem' }}>Printers</Link>
             <Link href="/admin/blogs" style={{ color: 'white', textDecoration: 'none', marginRight: '1rem' }}>Blogs</Link>
             <Link href="/admin/pricing-plans" style={{ color: 'white', textDecoration: 'none', marginRight: '1rem' }}>Pricing Plans</Link>
+            <Link href="/admin/reviews" style={{ color: 'white', textDecoration: 'none', marginRight: '1rem' }}>Reviews</Link>
             <Link href="/" style={{ color: '#9ca3af', textDecoration: 'none' }}>View Public Site</Link>
           </nav>
         </div>

@@ -1,30 +1,16 @@
 import React from 'react';
 import styles from './AboutReviewsSection.module.css';
+import { createClient } from '../../../utils/supabase/server';
 
-export default function AboutReviewsSection() {
-  const reviews = [
-    {
-      rating: 5.0,
-      text: "Excellent service! The technician was very professional and fixed our printer the same day.",
-      name: "Rahul Mehta",
-      role: "Office Manager, Pune",
-      img: "https://i.pravatar.cc/100?img=11"
-    },
-    {
-      rating: 5.0,
-      text: "Very quick response and reliable service. Our monthly printer rental has been smooth and hassle-free.",
-      name: "Neha Sharma",
-      role: "HR, Mumbai",
-      img: "https://i.pravatar.cc/100?img=5"
-    },
-    {
-      rating: 5.0,
-      text: "Great support and maintenance service. Highly recommended for businesses.",
-      name: "Vikram Patil",
-      role: "Business Owner, Nashik",
-      img: "https://i.pravatar.cc/100?img=12"
-    }
-  ];
+export default async function AboutReviewsSection() {
+  const supabase = await createClient();
+  
+  const { data: dbReviews, error } = await supabase
+    .from('reviews')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  const reviews = dbReviews || [];
 
   const renderStars = () => {
     return (

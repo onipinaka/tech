@@ -49,12 +49,14 @@
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
 }
 
 .card {
+  flex: 0 1 calc(25% - 18px);
   background: #FFFFFF;
   border: 1px solid #F1F5F9;
   border-radius: 16px;
@@ -98,13 +100,13 @@
 
 /* ── Responsive ── */
 @media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+  .card {
+    flex: 0 1 calc(50% - 12px);
   }
 }
 
 @media (max-width: 640px) {
-  .grid {
-    grid-template-columns: 1fr;
+  .card {
+    flex: 0 1 100%;
   }
 }

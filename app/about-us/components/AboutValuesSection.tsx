@@ -11,8 +11,8 @@ export default function AboutValuesSection() {
           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
         </svg>
       ),
-      title: 'Integrity',
-      desc: 'Honest advice and transparent service.',
+      title: 'Courtesy',
+      desc: 'Reflects the respect and professionalism we extend to every customer.',
       colorClass: styles.iconPink
     },
     {
@@ -21,8 +21,8 @@ export default function AboutValuesSection() {
           <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
         </svg>
       ),
-      title: 'Quality',
-      desc: 'No compromise on workmanship.',
+      title: 'Commitment',
+      desc: 'Represents our dedication to delivering reliable solutions and timely support.',
       colorClass: styles.iconBlue
     },
     {
@@ -34,8 +34,8 @@ export default function AboutValuesSection() {
           <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
         </svg>
       ),
-      title: 'Customer First',
-      desc: 'Your satisfaction is our success.',
+      title: 'Competence',
+      desc: 'Demonstrates the technical expertise and continuous innovation that enable us to provide world-class IT services.',
       colorClass: styles.iconPurple
     }
   ];
@@ -44,10 +44,10 @@ export default function AboutValuesSection() {
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.textCol}>
-          <div className={styles.badge}>Our Values</div>
-          <h2 className={styles.title}>What Drives Us</h2>
+          <div className={styles.badge}>Our Core Values</div>
+          <h2 className={styles.title}>CCC | Courtesy • Commitment • Competence</h2>
           <p className={styles.content}>
-            We are committed to delivering technology services with integrity, quality and care. Our values guide everything we do &mdash; from the smallest repair to long-term business solutions.
+            Our organization is driven by the core values of CCC. These values are the foundation of every project we undertake and every relationship we build.
           </p>
           <Link href="/contact" style={{ textDecoration: 'none' }}>
             <button className={styles.primaryBtn}>
