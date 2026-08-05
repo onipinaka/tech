@@ -19,9 +19,32 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  const keywordsArray = post.seo_keywords
+    ? post.seo_keywords.split(',').map((k: string) => k.trim()).filter(Boolean)
+    : [];
+
+  const tagsArray = post.tags
+    ? post.tags.split(',').map((t: string) => t.trim()).filter(Boolean)
+    : [];
+
   return {
     title: `${post.title} | Raion Technologies Blog`,
     description: post.excerpt,
+    keywords: keywordsArray.length > 0 ? keywordsArray : undefined,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      publishedTime: post.created_at,
+      images: post.cover_image ? [{ url: post.cover_image }] : [],
+      tags: tagsArray.length > 0 ? tagsArray : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: post.cover_image ? [post.cover_image] : [],
+    },
   };
 }
 
@@ -33,6 +56,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (!post) {
     notFound();
   }
+
+  const tagsList = post.tags
+    ? post.tags.split(',').map((t: string) => t.trim()).filter(Boolean)
+    : [];
 
   return (
     <main>
@@ -55,6 +82,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <div className={styles.meta}>
               <span>{new Date(post.created_at).toLocaleDateString()}</span>
             </div>
+
+            {tagsList.length > 0 && (
+              <div className={styles.tagList}>
+                {tagsList.map((tag: string, index: number) => (
+                  <span key={index} className={styles.tagPill}>
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </header>
 
           {post.cover_image && (

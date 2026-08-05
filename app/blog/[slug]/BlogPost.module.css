@@ -123,6 +123,24 @@
   margin-bottom: 8px;
 }
 
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.tagPill {
+  display: inline-block;
+  background-color: #f3f4f6;
+  color: var(--text-dark, #374151);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
 @media (max-width: 768px) {
   .title {
     font-size: 2rem;

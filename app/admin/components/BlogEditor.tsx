@@ -18,6 +18,8 @@ export default function BlogEditor({ initialData }: BlogEditorProps) {
     title: initialData?.title || '',
     slug: initialData?.slug || '',
     excerpt: initialData?.excerpt || '',
+    seo_keywords: initialData?.seo_keywords || '',
+    tags: initialData?.tags || '',
     cover_image: initialData?.cover_image || '',
     content: initialData?.content || '',
     published: initialData?.published || false,
@@ -90,6 +92,29 @@ export default function BlogEditor({ initialData }: BlogEditorProps) {
 
         <label style={labelStyle}>Excerpt</label>
         <textarea value={form.excerpt} onChange={e => setForm(prev => ({ ...prev, excerpt: e.target.value }))} rows={3} required style={inputStyle} />
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          <div>
+            <label style={labelStyle}>SEO Keywords (Comma Separated)</label>
+            <input 
+              type="text" 
+              value={form.seo_keywords} 
+              onChange={e => setForm(prev => ({ ...prev, seo_keywords: e.target.value }))} 
+              style={inputStyle} 
+              placeholder="e.g. laptop repair, printer rental, tech support" 
+            />
+          </div>
+          <div>
+            <label style={labelStyle}>Tags / Categories (Comma Separated)</label>
+            <input 
+              type="text" 
+              value={form.tags} 
+              onChange={e => setForm(prev => ({ ...prev, tags: e.target.value }))} 
+              style={inputStyle} 
+              placeholder="e.g. Hardware, Repair, Tips" 
+            />
+          </div>
+        </div>
 
         <div style={{ background: '#f9fafb', padding: '1rem', borderRadius: '4px', marginBottom: '1.5rem', border: '1px solid #e5e7eb' }}>
           <label style={labelStyle}>Cover Image (Google Drive Link or Image URL)</label>

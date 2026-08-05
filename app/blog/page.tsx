@@ -42,7 +42,9 @@ export default async function BlogPage() {
                 </div>
                 <div className={styles.content}>
                   <div className={styles.meta}>
-                    <span className={styles.category}>Blog Post</span>
+                    <span className={styles.category}>
+                      {post.tags ? post.tags.split(',')[0].trim() : 'Blog Post'}
+                    </span>
                     <span>•</span>
                     <span>{new Date(post.created_at).toLocaleDateString()}</span>
                   </div>
