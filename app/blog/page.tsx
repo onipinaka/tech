@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import styles from './BlogListing.module.css';
 import { createClient } from '../../utils/supabase/server';
+import { formatGoogleDriveUrl } from '../../utils/driveImage';
 
 export const metadata = {
   title: 'Blog & Insights | Raion Technologies',
@@ -35,7 +36,7 @@ export default async function BlogPage() {
               <Link href={`/blog/${post.slug}`} key={post.slug} className={styles.card}>
                 <div className={styles.imageWrap}>
                   {post.cover_image ? (
-                    <img src={post.cover_image} alt={post.title} className={styles.image} />
+                    <img src={formatGoogleDriveUrl(post.cover_image)} alt={post.title} className={styles.image} />
                   ) : (
                     <div className={styles.image} style={{ backgroundColor: '#e5e7eb' }} />
                   )}

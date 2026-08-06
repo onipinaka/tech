@@ -78,10 +78,15 @@ async function main() {
     const published = publishAns.toLowerCase().startsWith('y');
 
     let formattedCoverImage = coverImage.trim();
-    const driveMatch = formattedCoverImage.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || formattedCoverImage.match(/id=([a-zA-Z0-9_-]+)/);
+    const driveMatch = formattedCoverImage.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || formattedCoverImage.match(/[?&]id=([a-zA-Z0-9_-]+)/) || formattedCoverImage.match(/\/d\/([a-zA-Z0-9_-]+)/);
     if (driveMatch && driveMatch[1]) {
-      formattedCoverImage = `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
+      formattedCoverImage = `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
     }
+
+    const processedContent = content.trim().replace(
+      /https:\/\/(?:drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?export=view&id=)|lh3\.googleusercontent\.com\/d\/)([a-zA-Z0-9_-]+)[^\s"']*/g,
+      (match, id) => `https://lh3.googleusercontent.com/d/${id}`
+    );
 
     const blogData = {
       title: title.trim(),
@@ -90,7 +95,7 @@ async function main() {
       seo_keywords: seoKeywords.trim(),
       tags: tags.trim(),
       cover_image: formattedCoverImage,
-      content: content.trim(),
+      content: processedContent,
       published,
       updated_at: new Date().toISOString()
     };

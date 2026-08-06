@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '../../../utils/supabase/client';
+import { formatGoogleDriveUrl, processContentImages } from '../../../utils/driveImage';
 
 type BlogEditorProps = {
   initialData?: any;
@@ -13,6 +14,7 @@ export default function BlogEditor({ initialData }: BlogEditorProps) {
   const supabase = createClient();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [imageError, setImageError] = useState(false);
 
   const [form, setForm] = useState({
     title: initialData?.title || '',
@@ -35,15 +37,6 @@ export default function BlogEditor({ initialData }: BlogEditorProps) {
     }
   };
 
-  const formatGoogleDriveUrl = (url: string) => {
-    if (!url) return url;
-    const fileIdMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
-    if (fileIdMatch && fileIdMatch[1]) {
-      return `https://drive.google.com/uc?export=view&id=${fileIdMatch[1]}`;
-    }
-    return url;
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -52,6 +45,7 @@ export default function BlogEditor({ initialData }: BlogEditorProps) {
     const dataToSave = {
       ...form,
       cover_image: formatGoogleDriveUrl(form.cover_image),
+      content: processContentImages(form.content),
       updated_at: new Date().toISOString(),
     };
 
@@ -73,6 +67,8 @@ export default function BlogEditor({ initialData }: BlogEditorProps) {
 
   const inputStyle = { width: '100%', padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '4px', boxSizing: 'border-box' as const, marginBottom: '1rem', fontFamily: 'inherit' };
   const labelStyle = { display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.875rem' };
+
+  const previewUrl = formatGoogleDriveUrl(form.cover_image);
 
   return (
     <div style={{ background: 'white', padding: '2rem', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
@@ -121,18 +117,34 @@ export default function BlogEditor({ initialData }: BlogEditorProps) {
           <input 
             type="text" 
             value={form.cover_image} 
-            onChange={e => setForm(prev => ({ ...prev, cover_image: e.target.value }))} 
+            onChange={e => {
+              setForm(prev => ({ ...prev, cover_image: e.target.value }));
+              setImageError(false);
+            }} 
             style={inputStyle} 
             placeholder="e.g. https://drive.google.com/file/d/..."
           />
           {form.cover_image && (
-            <img 
-              src={formatGoogleDriveUrl(form.cover_image)} 
-              alt="Cover preview" 
-              style={{ width: '200px', height: 'auto', marginTop: '1rem', borderRadius: '4px' }} 
-              onError={(e) => { e.currentTarget.style.display = 'none'; }}
-              onLoad={(e) => { e.currentTarget.style.display = 'block'; }}
-            />
+            <div style={{ marginTop: '0.75rem' }}>
+              <img 
+                src={previewUrl} 
+                alt="Cover preview" 
+                style={{ 
+                  maxWidth: '300px', 
+                  maxHeight: '200px', 
+                  borderRadius: '4px',
+                  display: imageError ? 'none' : 'block',
+                  border: '1px solid #e5e7eb'
+                }} 
+                onError={() => setImageError(true)}
+                onLoad={() => setImageError(false)}
+              />
+              {imageError && (
+                <div style={{ color: '#dc2626', fontSize: '0.85rem', marginTop: '0.5rem', background: '#fef2f2', padding: '0.5rem 0.75rem', borderRadius: '4px', border: '1px solid #fecaca' }}>
+                  ⚠️ Unable to preview image. Make sure your Google Drive link has sharing set to <strong>"Anyone with the link can view"</strong>.
+                </div>
+              )}
+            </div>
           )}
         </div>
 

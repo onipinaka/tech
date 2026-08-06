@@ -5,6 +5,7 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import styles from './BlogPost.module.css';
 import { createClient } from '../../../utils/supabase/server';
+import { formatGoogleDriveUrl, processContentImages } from '../../../utils/driveImage';
 
 
 
@@ -96,12 +97,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           {post.cover_image && (
             <div className={styles.imageWrap}>
-              <img src={post.cover_image} alt={post.title} className={styles.image} />
+              <img src={formatGoogleDriveUrl(post.cover_image)} alt={post.title} className={styles.image} />
             </div>
           )}
 
           <div className={styles.content}>
-            {post.content && <div dangerouslySetInnerHTML={{ __html: post.content }} />}
+            {post.content && <div dangerouslySetInnerHTML={{ __html: processContentImages(post.content) }} />}
           </div>
           
         </div>
