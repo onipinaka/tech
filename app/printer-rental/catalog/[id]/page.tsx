@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import { createClient } from '../../../../utils/supabase/server';
+import { formatGoogleDriveUrl } from '../../../../utils/driveImage';
 import styles from './PrinterDetail.module.css';
 
 // Generating metadata dynamically for SEO
@@ -66,7 +67,7 @@ export default async function PrinterDetailPage({ params }: { params: Promise<{ 
           <div className={styles.imageSection}>
             <div className={styles.imageWrapper}>
               {printer.image_url ? (
-                <img src={printer.image_url} alt={printer.name} className={styles.image} />
+                <img src={formatGoogleDriveUrl(printer.image_url)} alt={printer.name} className={styles.image} />
               ) : (
                 <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af' }}>
                   No image available

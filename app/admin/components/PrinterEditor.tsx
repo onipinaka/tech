@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '../../../utils/supabase/client';
+import { formatGoogleDriveUrl } from '../../../utils/driveImage';
 
 type PrinterEditorProps = {
   initialData?: any;
@@ -13,6 +14,7 @@ export default function PrinterEditor({ initialData }: PrinterEditorProps) {
   const supabase = createClient();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [imageError, setImageError] = useState(false);
 
   const [form, setForm] = useState({
     name: initialData?.name || '',
@@ -49,6 +51,7 @@ export default function PrinterEditor({ initialData }: PrinterEditorProps) {
     setError(null);
     setImageFile(file);
     setImagePreview(URL.createObjectURL(file));
+    setImageError(false);
     setForm(prev => ({ ...prev, image_url: '' })); // clear url if file is selected
   };
 
@@ -57,7 +60,7 @@ export default function PrinterEditor({ initialData }: PrinterEditorProps) {
     setLoading(true);
     setError(null);
 
-    let finalImageUrl = form.image_url;
+    let finalImageUrl = form.image_url ? formatGoogleDriveUrl(form.image_url) : '';
 
     try {
       // 1. Upload image if provided
@@ -152,17 +155,19 @@ export default function PrinterEditor({ initialData }: PrinterEditorProps) {
             </div>
 
             <div>
-              <label style={labelStyle}>Option 2: Provide Image URL</label>
+              <label style={labelStyle}>Option 2: Provide Image URL (Direct Link or Google Drive)</label>
               <input 
-                type="url" 
+                type="text" 
                 value={form.image_url} 
                 onChange={e => {
-                  setForm(prev => ({ ...prev, image_url: e.target.value }));
+                  const val = e.target.value;
+                  setForm(prev => ({ ...prev, image_url: val }));
                   setImageFile(null); // clear file
-                  setImagePreview(e.target.value);
+                  setImagePreview(val);
+                  setImageError(false);
                 }} 
                 style={inputStyle} 
-                placeholder="https://example.com/image.jpg"
+                placeholder="e.g. https://drive.google.com/file/d/... or image URL"
               />
             </div>
           </div>
@@ -171,12 +176,17 @@ export default function PrinterEditor({ initialData }: PrinterEditorProps) {
             <div style={{ marginTop: '1rem', padding: '1rem', background: 'white', borderRadius: '4px', border: '1px solid #e5e7eb', display: 'inline-block' }}>
               <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.875rem', fontWeight: 600 }}>Preview:</p>
               <img 
-                src={imagePreview} 
+                src={formatGoogleDriveUrl(imagePreview)} 
                 alt="Preview" 
-                style={{ maxWidth: '200px', maxHeight: '200px', objectFit: 'contain' }} 
-                onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                onLoad={(e) => { e.currentTarget.style.display = 'block'; }}
+                style={{ maxWidth: '200px', maxHeight: '200px', objectFit: 'contain', display: imageError ? 'none' : 'block' }} 
+                onError={() => setImageError(true)}
+                onLoad={() => setImageError(false)}
               />
+              {imageError && (
+                <div style={{ color: '#dc2626', fontSize: '0.85rem', marginTop: '0.5rem', background: '#fef2f2', padding: '0.5rem 0.75rem', borderRadius: '4px', border: '1px solid #fecaca' }}>
+                  ⚠️ Unable to preview image. Make sure your Google Drive link has sharing set to <strong>"Anyone with the link can view"</strong>.
+                </div>
+              )}
             </div>
           )}
         </div>

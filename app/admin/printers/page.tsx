@@ -3,6 +3,7 @@ import { createClient } from '../../../utils/supabase/server';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import DeleteButton from '../components/DeleteButton';
+import { formatGoogleDriveUrl } from '../../../utils/driveImage';
 
 export default async function AdminPrintersPage() {
   const supabase = await createClient();
@@ -58,7 +59,7 @@ export default async function AdminPrintersPage() {
                 <tr key={printer.id} style={{ borderBottom: '1px solid #e5e7eb' }}>
                   <td style={{ padding: '1rem' }}>
                     {printer.image_url ? (
-                      <img src={printer.image_url} alt="" style={{ width: '60px', height: '60px', objectFit: 'contain', borderRadius: '4px', background: '#fff', border: '1px solid #e5e7eb' }} />
+                      <img src={formatGoogleDriveUrl(printer.image_url)} alt="" style={{ width: '60px', height: '60px', objectFit: 'contain', borderRadius: '4px', background: '#fff', border: '1px solid #e5e7eb' }} />
                     ) : (
                       <div style={{ width: '60px', height: '60px', background: '#e5e7eb', borderRadius: '4px' }} />
                     )}

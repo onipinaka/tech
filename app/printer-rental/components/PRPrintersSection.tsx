@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { createClient } from '../../../utils/supabase/server';
+import { formatGoogleDriveUrl } from '../../../utils/driveImage';
 import styles from './PRPrintersSection.module.css';
 
 // Using Next.js image is good but since URL can be external or Supabase Storage, we might just use img tag for simplicity, 
@@ -41,7 +42,7 @@ export default async function PRPrintersSection() {
               <Link href={`/printer-rental/catalog/${printer.id}`} key={printer.id} className={styles.card} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className={styles.imageWrapper}>
                   {printer.image_url ? (
-                    <img src={printer.image_url} alt={printer.name} className={styles.image} />
+                    <img src={formatGoogleDriveUrl(printer.image_url)} alt={printer.name} className={styles.image} />
                   ) : (
                     <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af' }}>
                       No image

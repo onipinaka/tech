@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '../../../utils/supabase/client';
+import { formatGoogleDriveUrl } from '../../../utils/driveImage';
 
 type ReviewEditorProps = {
   initialData?: any;
@@ -27,9 +28,13 @@ export default function ReviewEditor({ initialData }: ReviewEditorProps) {
     setLoading(true);
     setError(null);
 
+    const formattedImg = form.img.startsWith('data:image') 
+      ? form.img 
+      : (form.img ? formatGoogleDriveUrl(form.img) : `https://ui-avatars.com/api/?name=${encodeURIComponent(form.name || 'User')}&background=random&color=fff`);
+
     const dataToSave = {
       ...form,
-      img: form.img || `https://ui-avatars.com/api/?name=${encodeURIComponent(form.name || 'User')}&background=random&color=fff`,
+      img: formattedImg,
     };
 
     try {
@@ -50,6 +55,8 @@ export default function ReviewEditor({ initialData }: ReviewEditorProps) {
 
   const inputStyle = { width: '100%', padding: '0.75rem', border: '1px solid #d1d5db', borderRadius: '4px', boxSizing: 'border-box' as const, marginBottom: '1rem', fontFamily: 'inherit' };
   const labelStyle = { display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.875rem' };
+
+  const avatarPreview = form.img.startsWith('data:image') ? form.img : formatGoogleDriveUrl(form.img);
 
   return (
     <div style={{ background: 'white', padding: '2rem', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
@@ -85,7 +92,7 @@ export default function ReviewEditor({ initialData }: ReviewEditorProps) {
             />
           </div>
           <div>
-            <label style={labelStyle}>Avatar Photo (Max 150KB)</label>
+            <label style={labelStyle}>Avatar Photo (Max 150KB or Drive Link)</label>
             <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
               <div style={{ flex: 1 }}>
                 <input 
@@ -113,7 +120,7 @@ export default function ReviewEditor({ initialData }: ReviewEditorProps) {
                   value={form.img.startsWith('data:image') ? '' : form.img} 
                   onChange={e => setForm(prev => ({ ...prev, img: e.target.value }))} 
                   style={{ ...inputStyle, marginBottom: 0, fontSize: '0.875rem' }} 
-                  placeholder={form.img.startsWith('data:image') ? 'Image uploaded via file' : 'Or paste image URL'} 
+                  placeholder={form.img.startsWith('data:image') ? 'Image uploaded via file' : 'Or paste image URL (or Drive link)'} 
                   disabled={form.img.startsWith('data:image')} 
                 />
                 {form.img.startsWith('data:image') && (
@@ -121,7 +128,7 @@ export default function ReviewEditor({ initialData }: ReviewEditorProps) {
                 )}
               </div>
               {form.img && (
-                <img src={form.img} alt="Preview" style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', border: '1px solid #e5e7eb' }} />
+                <img src={avatarPreview} alt="Preview" style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', border: '1px solid #e5e7eb' }} />
               )}
             </div>
           </div>

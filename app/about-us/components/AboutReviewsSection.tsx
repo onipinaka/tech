@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './AboutReviewsSection.module.css';
 import { createClient } from '../../../utils/supabase/server';
+import { formatGoogleDriveUrl } from '../../../utils/driveImage';
 
 export default async function AboutReviewsSection() {
   const supabase = await createClient();
@@ -54,7 +55,7 @@ export default async function AboutReviewsSection() {
                 </div>
                 <p className={styles.reviewText}>{review.text}</p>
                 <div className={styles.customerInfo}>
-                  <img src={review.img} alt={review.name} className={styles.avatar} />
+                  <img src={formatGoogleDriveUrl(review.img)} alt={review.name} className={styles.avatar} />
                   <div className={styles.customerDetails}>
                     <h4 className={styles.customerName}>{review.name}</h4>
                     <p className={styles.customerRole}>{review.role}</p>
